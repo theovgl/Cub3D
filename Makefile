@@ -1,9 +1,7 @@
 NAME		= cub3d
 SRCS		= $(addprefix srcs/, main.c)
 OBJS		= $(SRCS:.c=.o)
-INCL		= -I includes -I lib/minilibx-linux -I lib/libft
-LIBFTDIR	= lib/libft
-LIBFT		= $(LIBFTDIR)/libft.a
+INCL		= -I includes -I lib/minilibx-linux
 MLXDIR		= lib/minilibx-linux
 MLX			= $(MLXDIR)/libmlx.a
 LIBS		= -L$(MLXDIR) -L$(LIBFTDIR) -lmlx -lXext -lX11
@@ -14,16 +12,13 @@ RM			= rm -f
 %.o:		%.c
 			$(CC) $(CFLAGS) $(INCL) -c $< -o $@
 
-all:		$(MLX) $(LIBFT) $(NAME)
+all:		$(MLX) $(NAME)
 
 $(NAME):	$(OBJS)
 			$(CC) $(CFLAGS) $^ $(LIBS) -o $@
 
 $(MLX):
 			make -C $(MLXDIR)
-
-$(LIBFT):
-			make -C $(LIBFTDIR)
 
 clean:
 			$(RM) $(OBJS)

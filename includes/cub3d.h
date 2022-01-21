@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:02:08 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/21 14:15:42 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/01/21 16:40:32 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include "get_next_line.h"
+
+# define SCR_WIDTH 1280
+# define SCR_HEIGHT 720
 
 typedef struct s_player
 {
@@ -57,6 +60,23 @@ typedef struct s_colors
 	unsigned int	hex;
 }	t_colors;
 
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
+typedef struct s_graph
+{
+	void	*mlx;
+	void	*win;
+	t_img	img;
+}	t_graph;
+
+
 typedef struct s_config
 {
 	int			map_fd;
@@ -66,6 +86,7 @@ typedef struct s_config
 	t_textures	textures[4];
 	t_map		map;
 	t_player	player;
+	t_graph		graph;
 }	t_config;
 
 int		init(t_config *conf);
@@ -78,6 +99,15 @@ int		save_map(t_config *conf);
 int		settings_checker(t_config *conf);
 int		is_map(t_config *conf, char *line, int print);
 int		check_map(t_config *conf, t_map map);
+
+int		start(t_config *conf, t_graph *g);
+int		open_windows(t_graph *graph);
+int		handle_input(int key, t_graph *graph);
+int		my_mlx_loop_hook(void);
+int		close_window(t_graph *g);
+void	my_mlx_pixel_put(t_graph graph, int x, int y, int color);
+
+int		draw_map(t_config *conf, t_graph *g, t_map *map);
 
 int		error_handling(t_config *conf, int return_value, char *message);
 

@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   settings_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 17:55:30 by tvogel            #+#    #+#             */
-/*   Updated: 2021/12/28 19:32:08 by tvogel           ###   ########.fr       */
+/*   Created: 2021/12/30 17:33:06 by tvogel            #+#    #+#             */
+/*   Updated: 2021/12/30 21:41:30 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char const *argv[])
+int	settings_checker(t_config *conf)
 {
-	t_config	conf;
+	t_textures	current;
+	int			i;
 
-	if (argc != 2)
-		return (error_handling(&conf, 1, "Illegal number of arguments"));
-	init(&conf);
-	if (parsing(&conf, argv) == 1)
-		return (1);
+	i = 0;
+	while (i < 4)
+	{
+		current = conf->textures[i];
+		if (conf->floor.seen == 0 || conf->ceiling.seen == 0)
+			return (1);
+		if (current.path == NULL)
+			return (1);
+		i++;
+	}
 	return (0);
 }

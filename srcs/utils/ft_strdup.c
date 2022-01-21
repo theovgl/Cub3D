@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 17:55:30 by tvogel            #+#    #+#             */
-/*   Updated: 2021/12/28 19:32:08 by tvogel           ###   ########.fr       */
+/*   Created: 2020/07/14 15:11:30 by tvogel            #+#    #+#             */
+/*   Updated: 2022/01/04 16:43:57 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char const *argv[])
+char	*ft_strdup(const char *src)
 {
-	t_config	conf;
+	char	*str;
+	char	*s;
+	int		i;
 
-	if (argc != 2)
-		return (error_handling(&conf, 1, "Illegal number of arguments"));
-	init(&conf);
-	if (parsing(&conf, argv) == 1)
-		return (1);
-	return (0);
+	i = 0;
+	s = (char *)src;
+	str = malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!str)
+		return (NULL);
+	while (src[i])
+	{
+		str[i] = src[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

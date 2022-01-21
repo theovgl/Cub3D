@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 17:55:30 by tvogel            #+#    #+#             */
-/*   Updated: 2021/12/28 19:32:08 by tvogel           ###   ########.fr       */
+/*   Created: 2021/12/22 16:31:20 by tvogel            #+#    #+#             */
+/*   Updated: 2021/12/28 16:42:53 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char const *argv[])
+int	error_handling(t_config *conf, int return_value, char *message)
 {
-	t_config	conf;
-
-	if (argc != 2)
-		return (error_handling(&conf, 1, "Illegal number of arguments"));
-	init(&conf);
-	if (parsing(&conf, argv) == 1)
-		return (1);
-	return (0);
+	conf->error = 1;
+	printf("Error: %s\n", message);
+	return (return_value);
 }

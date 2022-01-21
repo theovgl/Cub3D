@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 17:55:30 by tvogel            #+#    #+#             */
-/*   Updated: 2021/12/28 19:32:08 by tvogel           ###   ########.fr       */
+/*   Created: 2020/12/01 13:08:25 by tvogel            #+#    #+#             */
+/*   Updated: 2021/12/22 18:32:36 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 
-int	main(int argc, char const *argv[])
-{
-	t_config	conf;
+# include "cub3d.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <stdio.h>
 
-	if (argc != 2)
-		return (error_handling(&conf, 1, "Illegal number of arguments"));
-	init(&conf);
-	if (parsing(&conf, argv) == 1)
-		return (1);
-	return (0);
-}
+int		get_next_line(int fd, char **line);
+int		isendline(char *src);
+char	*ft_join(char *s1, char *s2);
+
+#endif

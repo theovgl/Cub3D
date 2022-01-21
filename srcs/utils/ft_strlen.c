@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 17:55:30 by tvogel            #+#    #+#             */
-/*   Updated: 2021/12/28 19:32:08 by tvogel           ###   ########.fr       */
+/*   Created: 2020/11/16 17:55:21 by tvogel            #+#    #+#             */
+/*   Updated: 2021/12/22 20:47:30 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char const *argv[])
+size_t	ft_strlen(const char *src)
 {
-	t_config	conf;
+	int	i;
 
-	if (argc != 2)
-		return (error_handling(&conf, 1, "Illegal number of arguments"));
-	init(&conf);
-	if (parsing(&conf, argv) == 1)
-		return (1);
-	return (0);
+	i = 0;
+	if (!src)
+		return (0);
+	while (src[i])
+	{
+		i++;
+	}
+	return (i);
 }

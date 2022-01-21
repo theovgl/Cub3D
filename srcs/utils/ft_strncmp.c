@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 17:55:30 by tvogel            #+#    #+#             */
-/*   Updated: 2021/12/28 19:32:08 by tvogel           ###   ########.fr       */
+/*   Created: 2020/07/06 21:48:20 by tvogel            #+#    #+#             */
+/*   Updated: 2021/12/23 14:19:12 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char const *argv[])
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_config	conf;
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	if (argc != 2)
-		return (error_handling(&conf, 1, "Illegal number of arguments"));
-	init(&conf);
-	if (parsing(&conf, argv) == 1)
-		return (1);
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	i = 0;
+	if (n == 0)
+		return (0);
+	while ((str1[i] || str2[i]) && i < n)
+	{
+		if (str1[i] != str2[i])
+		{
+			if (str1[i] < str2[i])
+				return (str1[i] - str2[i]);
+			else
+				return (str1[i] - str2[i]);
+		}
+		i++;
+	}
 	return (0);
 }

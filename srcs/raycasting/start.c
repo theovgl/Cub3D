@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:26:18 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/21 17:11:44 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/01/23 15:56:24 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ int	start(t_config *conf, t_graph *g)
 {
 	init_mlx(g);
 	open_windows(g);
-	draw_map(conf, g, &conf->map);
-	mlx_put_image_to_window(g->mlx, g->win, g->img.mlx_img, 1, 1);
+	mlx_loop_hook(g->mlx, &render, conf);
 	mlx_hook(g->win, ClientMessage, StructureNotifyMask,
 		&close_window, g);
-	mlx_key_hook(g->win, &handle_input, g);
-	mlx_loop_hook(g->mlx, &my_mlx_loop_hook, g);
+	mlx_key_hook(g->win, &handle_input, conf);
 	mlx_loop(g->mlx);
 	mlx_destroy_display(g->mlx);
 	free(g->mlx);

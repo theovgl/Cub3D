@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:02:08 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/23 15:56:45 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/01/24 10:21:27 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int		close_window(t_graph *g);
 void	my_mlx_pixel_put(t_graph graph, int x, int y, int color);
 
 int		render(t_config *conf);
-int		move_player(int	keysym, t_config *conf);
+void	move_player(int	keysym, t_config *conf);
 
 int		error_handling(t_config *conf, int return_value, char *message);
 

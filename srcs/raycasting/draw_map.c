@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:11:07 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/23 15:31:33 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/01/24 10:13:48 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	draw_map(t_config *conf)
 
 void	draw_player(t_config *conf, t_player *player)
 {
-	render_rect(conf->graph, (t_rect){player->x * 10 - 10, player->y * 10 - 10,
+	render_rect(conf->graph, (t_rect){player->x * 10, player->y * 10,
 		10, 10, 0x00AAFF99});
 }
 

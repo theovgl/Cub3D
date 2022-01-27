@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 17:12:22 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/21 15:05:29 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/01/24 14:08:38 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	print_map(t_map map)
 
 void	print_player(t_config *conf)
 {
-	printf("\nPlayer X: %i, Player Y: %i\n", conf->player.x, conf->player.y);
+	printf("\nPlayer X: %f, Player Y: %f\n", conf->player.x, conf->player.y);
 }
 
 int	parsing(t_config *conf, const char *av[])

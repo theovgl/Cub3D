@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:36:42 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/27 11:09:36 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/01/27 15:03:41 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	swap_point(t_point *p0, t_point *p1)
 	t_point	temp;
 
 	temp = *p1;
-	p1 = p0;
+	*p1 = *p0;
 	*p0 = temp;
 }
 
@@ -33,7 +33,7 @@ static void	draw_line_x(t_graph g, t_point p0, t_point p1, int c)
 	slope = (p1.y - p0.y) / (p1.x - p0.x);
 	b = p0.y - slope * p0.x;
 	x = (int)p0.x;
-	while (x < p1.x)
+	while (x < (int)p1.x)
 	{
 		y = slope * (float)x + b;
 		my_mlx_pixel_put(g, x++, (int)y, c);
@@ -65,6 +65,8 @@ void	draw_line(t_graph g, t_point p0, t_point p1, int color)
 	float	slope;
 
 	slope = 0;
+	if (p1.x != p0.x)
+		slope = (p1.y - p0.y) / (p1.x - p0.x);
 	if (p1.x != p0.x && fabs(slope) <= 1.0)
 		draw_line_x(g, p0, p1, color);
 	else

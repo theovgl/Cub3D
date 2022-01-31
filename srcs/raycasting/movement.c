@@ -6,31 +6,43 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 15:30:22 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/27 11:06:24 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/01/31 14:20:10 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// printf("Player X: %f, Player Y: %f\n", conf->player.x, conf->player.y);
-
-void	move_player(int keysym, t_config *conf)
+int	is_there_wall(t_config *c, float x, float y)
 {
-	int	pos_x;
-	int	pos_y;
+	int	index_x;
+	int	index_y;
 
-	pos_x = floorf(conf->player.x);
-	pos_y = floorf(conf->player.y);
-	if (keysym == XK_w
-		&& conf->map.map[pos_y - 1][pos_x] != '1')
-		conf->player.y -= 1;
-	else if (keysym == XK_a
-		&& conf->map.map[pos_y][pos_x - 1] != '1')
-		conf->player.x -= 1;
-	else if (keysym == XK_s
-		&& conf->map.map[pos_y + 1][pos_x] != '1')
-		conf->player.y += 1;
-	else if (keysym == XK_d
-		&& conf->map.map[pos_y][pos_x + 1] != '1')
-		conf->player.x += 1;
+	if (x < 0 || x > SCR_WIDTH || y < 0 || y > SCR_HEIGHT)
+		return (1);
+	index_x = floor(x + 0.4);
+	index_y = floor(y + 0.4);
+	if (c->map.map[index_y][index_x] == '1')
+	{
+		return (1);
+	}
+	return (0);
+}
+
+int	move_player(t_config *conf, t_player *p, t_map *m)
+{
+	float	move_step;
+	float	new_player_x;
+	float	new_player_y;
+
+	p->rotation_ang += p->turn_dir * p->turn_speed;
+	move_step = p->walk_dir * p->walk_speed;
+	new_player_x = p->x + cos(p->rotation_ang) * move_step;
+	new_player_y = p->y + sin(p->rotation_ang) * move_step;
+	if (m->map[(int)new_player_y][(int)new_player_x]
+		&& is_there_wall(conf, new_player_x, new_player_y) != 1)
+	{
+		p->x = new_player_x;
+		p->y = new_player_y;
+	}
+	return (0);
 }

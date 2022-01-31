@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.h                                          :+:      :+:    :+:   */
+/*   render_rect.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 15:37:59 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/31 14:13:01 by tvogel           ###   ########.fr       */
+/*   Created: 2022/01/31 14:10:54 by tvogel            #+#    #+#             */
+/*   Updated: 2022/01/31 14:11:03 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCAST_H
-# define RAYCAST_H
-# include "cub3d.h"
+#include "graphics.h"
 
-typedef struct s_raycast
+void	render_rect(t_graph g, t_rect rect)
 {
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-}	t_raycast;
+	int	i;
+	int	j;
 
-int		start(t_config *conf, t_graph *g);
-void	cast_rays(t_config *c, t_player *p);
-int		render(t_config *conf);
-
-#endif
+	i = rect.y;
+	while (i < rect.y + rect.height)
+	{
+		j = rect.x;
+		while (j < rect.x + rect.width)
+			my_mlx_pixel_put(g, j++, i, rect.color);
+		i++;
+	}
+	return ;
+}

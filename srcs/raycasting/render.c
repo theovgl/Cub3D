@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.h                                          :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 15:37:59 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/31 14:13:01 by tvogel           ###   ########.fr       */
+/*   Created: 2022/01/31 14:05:27 by tvogel            #+#    #+#             */
+/*   Updated: 2022/01/31 14:12:45 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCAST_H
-# define RAYCAST_H
-# include "cub3d.h"
+#include "raycast.h"
 
-typedef struct s_raycast
+static void	update(t_config *conf)
 {
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-}	t_raycast;
+	move_player(conf, &conf->player, &conf->map);
+	cast_rays(conf, &conf->player);
+}
 
-int		start(t_config *conf, t_graph *g);
-void	cast_rays(t_config *c, t_player *p);
-int		render(t_config *conf);
-
-#endif
+int	render(t_config *conf)
+{
+	update(conf);
+	draw_map(conf);
+	draw_player(conf, &conf->player);
+	mlx_put_image_to_window(conf->graph.mlx, conf->graph.win,
+		conf->graph.img.mlx_img, 0, 0);
+	return (0);
+}

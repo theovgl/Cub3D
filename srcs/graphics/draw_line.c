@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:36:42 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/27 15:03:41 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/01/27 16:03:20 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ static void	draw_line_x(t_graph g, t_point p0, t_point p1, int c)
 	while (x < (int)p1.x)
 	{
 		y = slope * (float)x + b;
-		my_mlx_pixel_put(g, x++, (int)y, c);
+		if (x > 0 && y > 0 && x < SCR_WIDTH && y < SCR_HEIGHT)
+			my_mlx_pixel_put(g, x, (int)y, c);
+		x++;
 	}
 }
 
@@ -55,7 +57,8 @@ static void	draw_line_y(t_graph g, t_point p0, t_point p1, int c)
 	while (y < (int)p1.y)
 	{
 		x = slope * (float)y + b;
-		my_mlx_pixel_put(g, (int)x, y, c);
+		if (x > 0 && y > 0 && x < SCR_WIDTH && y < SCR_HEIGHT)
+			my_mlx_pixel_put(g, (int)x, y, c);
 		y++;
 	}
 }

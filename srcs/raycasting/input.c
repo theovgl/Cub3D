@@ -6,22 +6,55 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:42:10 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/24 10:20:45 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/01/27 12:25:12 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	handle_input(int key, t_config *conf)
+int	keydown(int keysym, t_config *conf)
 {
-	if (key == XK_Escape)
+	if (keysym == XK_Escape)
 	{
-		mlx_loop_end(conf->graph.mlx);
 		close_window(&conf->graph);
+		printf("Escape\n");
 	}
-	else if (key == XK_w || key == XK_a || key == XK_s || key == XK_d)
+	if (keysym == XK_w)
 	{
-		move_player(key, conf);
+		conf->player.walk_dir = 1;
+	}
+	if (keysym == XK_s)
+	{
+		conf->player.walk_dir = -1;
+	}
+	if (keysym == XK_Right)
+	{
+		conf->player.turn_dir = 1;
+	}
+	if (keysym == XK_Left)
+	{
+		conf->player.turn_dir = -1;
+	}
+	return (0);
+}
+
+int	keyup(int keysym, t_config *conf)
+{
+	if (keysym == XK_w)
+	{
+		conf->player.walk_dir = 0;
+	}
+	if (keysym == XK_s)
+	{
+		conf->player.walk_dir = 0;
+	}
+	if (keysym == XK_Right)
+	{
+		conf->player.turn_dir = 0;
+	}
+	if (keysym == XK_Left)
+	{
+		conf->player.turn_dir = 0;
 	}
 	return (0);
 }

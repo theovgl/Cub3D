@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:53:03 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/27 11:04:38 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/01/31 14:09:58 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,21 @@
 
 # include "cub3d.h"
 
-typedef struct s_rect
+typedef struct s_ray
 {
-	int	x;
-	int	y;
-	int	width;
-	int	height;
-	int	color;
-}	t_rect;
+	float	r_angle;
+	float	wallHitX;
+	float	wallHitY;
+	float	distance;
+	int		hit_vert;
+	int		hit_hor;
+	int		is_ray_up;
+	int		is_ray_down;
+	int		is_ray_right;
+	int		is_ray_left;
+	int		wall_content;
+
+}	t_ray;
 
 typedef struct s_player
 {
@@ -36,6 +43,7 @@ typedef struct s_player
 	float	walk_speed;
 	float	turn_speed;
 	int		seen;
+	float	fov;
 }	t_player;
 
 typedef struct s_map
@@ -80,6 +88,7 @@ typedef struct s_graph
 
 typedef struct s_config
 {
+	int			tile_size;
 	int			map_fd;
 	int			error;
 	t_colors	floor;
@@ -88,6 +97,7 @@ typedef struct s_config
 	t_map		map;
 	t_player	player;
 	t_graph		graph;
+	t_ray		rays[SCR_WIDTH];
 }	t_config;
 
 #endif

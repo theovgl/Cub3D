@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:38:45 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/27 11:03:13 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/01/31 14:16:22 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,19 @@ typedef struct s_point
 	float	y;
 }	t_point;
 
+typedef struct s_rect
+{
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+	int	color;
+}	t_rect;
+
 void	draw_line(t_graph g, t_point p0, t_point p1, int color);
+void	render_rect(t_graph g, t_rect rect);
+
+void	draw_map(t_config *conf);
+void	draw_player(t_config *conf, t_player *player);
 
 #endif

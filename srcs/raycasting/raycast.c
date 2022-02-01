@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:39:09 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/31 13:29:08 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/01 17:34:13 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ int	check_for_wall(t_config *c, float x, float y)
 	}
 	x_to_check = floor(x / c->tile_size);
 	y_to_check = floor(y / c->tile_size);
-	printf("%d, %d\n", x_to_check, y_to_check);
-	if (c->map.map[x_to_check][y_to_check] == '1')
+	if (c->map.map[y_to_check][x_to_check] == '1')
+	{
 		return (1);
+	}
 	return (0);
 }
 
@@ -60,30 +61,27 @@ void	cast_single_ray(t_config *c, t_ray *ray, int id)
 {
 	float	y_intercept;
 	float	x_intercept;
-	float	y_step;
-	float	x_step;
+	float	dy;
+	float	dx;
 	float	next_hor_x;
 	float	next_hor_y;
 
 	check_orientation(ray);
-	//ray->r_angle = normalize_angle(c->player.rotation_ang - (c->player.fov / 2));
-	y_intercept = floor(c->player.y / c->tile_size) * c->tile_size;
+	y_intercept = floorf(c->player.y * c->tile_size / c->tile_size) * c->tile_size;
+
 	if (ray->is_ray_down)
 		y_intercept += c->tile_size;
-	//if (ray->r_angle == 0)
-	//	ray->r_angle = 0.00000001;
+	if (ray->r_angle == 0)
+		ray->r_angle = 0.00000000000000001;
 	x_intercept = c->player.x + (y_intercept - c->player.y) / tan(ray->r_angle);
-	//printf("p.x: %f, p.y: %f\n", c->player.x, c->player.y);
-	//printf("x_int: %f, y_int: %f, a: %f\n", x_intercept, y_intercept, ray->r_angle);
-
-	y_step = c->tile_size;
+	dy = c->tile_size;
 	if (ray->is_ray_up)
-		y_step *= -1;
-	x_step = c->tile_size / tan(ray->r_angle);
-	if (ray->is_ray_left && x_step > 0)
-		x_step *= -1;
-	else if (ray->is_ray_right && x_step < 0)
-		x_step *= -1;
+		dy *= -1;
+	dx = c->tile_size / tan(ray->r_angle);
+	if (ray->is_ray_left && dx > 0)
+		dx *= -1;
+	else if (ray->is_ray_right && dx < 0)
+		dx *= -1;
 	next_hor_x = x_intercept;
 	next_hor_y = y_intercept;
 	if (ray->is_ray_up)
@@ -100,24 +98,16 @@ void	cast_single_ray(t_config *c, t_ray *ray, int id)
 		}
 		else
 		{
-			next_hor_x += x_step;
-			next_hor_y += y_step;
+			next_hor_x += dx;
+			next_hor_y += dy;
 		}
 	}
-	draw_line(c->graph, (t_point){
-		c->player.x * c->tile_size + (c->tile_size / 2) / 2,
-		c->player.y * c->tile_size + (c->tile_size / 2) / 2
-	}, (t_point){
-		ray->wallHitX * c->tile_size, ray->wallHitY * c->tile_size
-	}, 0x00FFA701);
-
-	//printf("right: %i, down: %i\n", ray->is_ray_right, ray->is_ray_down);
 	// check_horizontal(c, ray);
 }
 
 void	init_ray(t_config *c, t_ray *r, t_player *p)
 {
-	r->r_angle = normalize_angle(p->rotation_ang - (p->fov / 2));
+	r->r_angle = p->rotation_ang - (p->fov / 2);
 	r->wallHitX = 0;
 	r->wallHitY = 0;
 	r->distance = 0;

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:11:07 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/31 14:14:48 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/01 18:16:22 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ void	draw_player(t_config *conf, t_player *player)
 	int	size;
 
 	size = conf->tile_size / 2;
-	render_rect(conf->graph, (t_rect){player->x * conf->tile_size,
-		player->y * conf->tile_size,
+	render_rect(conf->graph, (t_rect){player->x,
+		player->y,
 		size, size, 0x00FFBE46});
 	draw_line(conf->graph, (t_point){
-		player->x * conf->tile_size + size / 2,
-		player->y * conf->tile_size + size / 2
+		player->x + size / 2,
+		player->y + size / 2
 	}, (t_point){
-		player->x * conf->tile_size + size / 2 + cos(player->rotation_ang) * 50,
-		player->y * conf->tile_size + size / 2 + sin(player->rotation_ang) * 50
+		player->x + size / 2 + cos(player->rotation_ang) * 50,
+		player->y + size / 2 + sin(player->rotation_ang) * 50
 	}, 0x02222FF);
 }

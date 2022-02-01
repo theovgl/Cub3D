@@ -6,17 +6,11 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:39:09 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/01 22:23:19 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/01 22:24:53 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
-
-
-
-
 
 void	cast_single_ray(t_config *c, t_ray *ray, float angle)
 {
@@ -37,15 +31,15 @@ void	cast_single_ray(t_config *c, t_ray *ray, float angle)
 	x_intercept = c->player.x + (y_intercept - c->player.y) / tan(angle);
 	//printf("x_int: %f, y_int: %f, a: %f\n", x_intercept, y_intercept, angle);
 
-	y_step = c->tile_size;
+	dy = c->tile_size;
 	if (ray->is_ray_up)
-		y_step *= -1;
+		dy *= -1;
 
-	x_step = c->tile_size / tan(angle);
-	if (ray->is_ray_left && x_step > 0)
-		x_step *= -1;
-	else if (ray->is_ray_right && x_step < 0)
-		x_step *= -1;
+	dx = c->tile_size / tan(angle);
+	if (ray->is_ray_left && dx > 0)
+		dx *= -1;
+	else if (ray->is_ray_right && dx < 0)
+		dx *= -1;
 
 	next_hor_x = x_intercept;
 	next_hor_y = y_intercept;

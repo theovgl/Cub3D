@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:39:09 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/01 22:20:14 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/01 22:23:19 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	cast_single_ray(t_config *c, t_ray *ray, float angle)
 {
 	float	y_intercept;
 	float	x_intercept;
-	float	y_step;
-	float	x_step;
+	float	dy;
+	float	dx;
 	float	next_hor_x;
 	float	next_hor_y;
 
@@ -63,8 +63,8 @@ void	cast_single_ray(t_config *c, t_ray *ray, float angle)
 		}
 		else
 		{
-			next_hor_x += x_step;
-			next_hor_y += y_step;
+			next_hor_x += dx;
+			next_hor_y += dy;
 		}
 	}
 }

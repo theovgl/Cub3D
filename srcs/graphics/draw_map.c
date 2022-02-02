@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:11:07 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/01 22:23:33 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/02 15:13:54 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	draw_map(t_config *conf)
 		while (map.map[i][j])
 		{
 			if (map.map[i][j] == '1')
-				render_rect(g, (t_rect){j * r, i * r, r, r, 0x00AA1512});
+				render_rect(g, (t_rect){j * r, i * r, r -2 , r - 2, 0x00AA1512});
 			else
-				render_rect(g, (t_rect){j * r, i * r, r, r, 0x00FFFFFF});
+				render_rect(g, (t_rect){j * r, i * r, r - 2, r - 2, 0x00FFFFFF});
 			j++;
 		}
 		i++;

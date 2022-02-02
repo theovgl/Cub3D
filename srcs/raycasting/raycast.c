@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:39:09 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/01 22:24:53 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/02 16:09:25 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,19 @@ void	cast_single_ray(t_config *c, t_ray *ray, float angle)
 	float	next_hor_x;
 	float	next_hor_y;
 
-	angle = normalize_angle(angle);
 	check_orientation(ray, angle);
 	y_intercept = floor(c->player.y / c->tile_size) * c->tile_size;
+	// printf("%f, %f, %i\n", y_intercept, c->player.y, c->tile_size);
 	if (ray->is_ray_down)
 		y_intercept += c->tile_size;
-	if (angle == 0 || angle == M_PI)
-		angle = 1e30;
+	if (angle == 0)
+		angle = 0.00000000001;
+	// printf("%f %f ratio: %f\n", c->player.rotation_ang, angle, c->player.rotation_ang - angle);
 	x_intercept = c->player.x + (y_intercept - c->player.y) / tan(angle);
-	//printf("x_int: %f, y_int: %f, a: %f\n", x_intercept, y_intercept, angle);
+	// printf("x_int: %f, y_int: %f, a: %f\n", x_intercept, y_intercept, angle);
 
-	dy = c->tile_size;
-	if (ray->is_ray_up)
+	dy = c->tile_size + 0.1;
+	if (ray->is_ray_down == 0)
 		dy *= -1;
 
 	dx = c->tile_size / tan(angle);
@@ -50,6 +51,7 @@ void	cast_single_ray(t_config *c, t_ray *ray, float angle)
 	{
 		if (check_for_wall(c, next_hor_x, next_hor_y))
 		{
+			// printf("dx: %f, dy: %f, angle: %f\n xInt: %f, yInt: %f\n", dx, dy, angle, x_intercept, y_intercept);
 			ray->hit_hor = 1;
 			ray->wallHitX = next_hor_x;
 			ray->wallHitY = next_hor_y;
@@ -68,6 +70,8 @@ void	init_ray(t_config *c, t_ray *r, t_player *p)
 	r->wallHitX = 0;
 	r->wallHitY = 0;
 	r->distance = 0;
+	r->is_ray_down = 0;
+	r->is_ray_right = 0;
 	return ;
 }
 
@@ -80,7 +84,8 @@ void	cast_rays(t_config *c, t_player *p)
 	id = 0;
 	size = c->tile_size / 2;
 	ray_angle = p->rotation_ang - (p->fov / 2);
-	while (id < SCR_WIDTH)
+	ray_angle = normalize_angle(ray_angle);
+	while (id < 1)
 	{
 		init_ray(c, &c->rays[id], p);
 		cast_single_ray(c, &c->rays[id], ray_angle);

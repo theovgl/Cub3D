@@ -6,67 +6,50 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:39:09 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/05 23:53:13 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/06 00:38:12 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	check_horizontal(t_config *c, t_ray *r)
+float	get_distance(float x1, float y1, float x2, float y2)
 {
-	float	next_hor_x;
-	float	next_hor_y;
+	float	distance;
+	float	y_distance;
+	float	x_distance;
 
-	get_intercept(c, r, 0);
-	get_delta(c, r, 0);
-	next_hor_x = r->x_intercept;
-	next_hor_y = r->y_intercept;
-	if (!r->is_ray_down)
-		next_hor_y--;
-	while (next_hor_x >= 0 && next_hor_x <= c->map.map_width * c->tile_size
-		&& next_hor_y >= 0 && next_hor_y <= c->map.map_height * c->tile_size)
-	{
-		if (check_for_wall(c, next_hor_x, next_hor_y))
-		{
-			r->hit_hor = 1;
-			r->hor_wall_x = next_hor_x;
-			r->hor_wall_y = next_hor_y;
-			break ;
-		}
-		else
-		{
-			next_hor_x += r->dx;
-			next_hor_y += r->dy;
-		}
-	}
+	x_distance = (x2 - x1) * (x2 - x1);
+	y_distance = (y2 - y1) * (y2 - y1);
+	distance = sqrt(x_distance + y_distance);
+	return (distance);
 }
 
-void	check_vertical(t_config *c, t_ray *r)
+void	best_distance(t_config *c, t_ray *ray)
 {
-	float	next_ver_x;
-	float	next_ver_y;
+	float	hor_hit_distance;
+	float	ver_hit_distance;
 
-	get_intercept(c, r, 1);
-	get_delta(c, r, 1);
-	next_ver_x = r->x_intercept;
-	next_ver_y = r->y_intercept;
-	if (!r->is_ray_right)
-		next_ver_x--;
-	while (next_ver_x >= 0 && next_ver_x <= c->map.map_width * c->tile_size
-		&& next_ver_y >= 0 && next_ver_y <= c->map.map_height * c->tile_size)
+	if (ray->hit_hor)
+		hor_hit_distance = get_distance(c->player.x, c->player.y,
+				ray->hor_wall_x, ray->hor_wall_y);
+	else
+		hor_hit_distance = (float)INT_MAX;
+	if (ray->hit_ver)
+		ver_hit_distance = get_distance(c->player.x, c->player.y,
+				ray->ver_wall_x, ray->ver_wall_y);
+	else
+		ver_hit_distance = (float)INT_MAX;
+	if (ver_hit_distance < hor_hit_distance)
 	{
-		if (check_for_wall(c, next_ver_x, next_ver_y))
-		{
-			r->hit_ver = 1;
-			r->ver_wall_x = next_ver_x;
-			r->ver_wall_y = next_ver_y;
-			break ;
-		}
-		else
-		{
-			next_ver_x += r->dx;
-			next_ver_y += r->dy;
-		}
+		ray->distance = ver_hit_distance;
+		ray->x = ray->ver_wall_x;
+		ray->y = ray->ver_wall_y;
+	}
+	else
+	{
+		ray->distance = hor_hit_distance;
+		ray->x = ray->hor_wall_x;
+		ray->y = ray->hor_wall_y;
 	}
 }
 
@@ -76,6 +59,7 @@ void	cast_single_ray(t_config *c, t_ray *ray)
 	ray->angle = normalize_angle(ray->angle);
 	check_horizontal(c, ray);
 	check_vertical(c, ray);
+	best_distance(c, ray);
 }
 
 void	init_ray(t_ray *r)
@@ -96,7 +80,7 @@ void	cast_rays(t_config *c, t_player *p)
 
 	id = 0;
 	ray_angle = p->rotation_ang - (p->fov / 2);
-	while (id < 1)
+	while (id < SCR_WIDTH)
 	{
 		init_ray(&c->rays[id]);
 		c->rays[id].angle = ray_angle;

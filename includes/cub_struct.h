@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:53:03 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/05 23:19:59 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/06 00:21:43 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ typedef struct s_ray
 	float	y_intercept;
 	float	dx;
 	float	dy;
+	float	x;
+	float	y;
+	float	distance;
 }	t_ray;
 
 typedef struct s_player

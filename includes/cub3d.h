@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:02:08 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/01 22:23:26 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/06 00:14:44 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
+# include <limits.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <errno.h>

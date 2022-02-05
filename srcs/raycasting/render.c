@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:05:27 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/05 23:53:48 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/06 00:24:28 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ static void	draw_rays(t_config *c)
 	int		i;
 
 	i = 0;
-	while (i < 1)
+	while (i < SCR_WIDTH)
 	{
 		ray = c->rays[i];
 		draw_line(c->graph, (t_point){
 			c->player.x,
 			c->player.y
 		}, (t_point){
-			ray.ver_wall_x,
-			ray.ver_wall_y
+			ray.x,
+			ray.y
 		}, 0x00FFA701);
 		i++;
 	}

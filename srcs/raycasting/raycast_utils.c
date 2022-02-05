@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:47:02 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/05 23:53:36 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/06 00:06:24 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@ void	get_intercept(t_config *c, t_ray *r, int vertical)
 	if (vertical == 0)
 	{
 		r->y_intercept = floor(c->player.y / c->tile_size) * c->tile_size;
+		if (r->is_ray_down)
+			r->y_intercept += c->tile_size;
 		r->x_intercept = c->player.x + (r->y_intercept - c->player.y)
 			/ tan(r->angle);
 	}
 	else
 	{
 		r->x_intercept = floor(c->player.x / c->tile_size) * c->tile_size;
+		if (r->is_ray_right)
+			r->x_intercept += c->tile_size;
 		r->y_intercept = c->player.y + (r->x_intercept - c->player.x)
 			* tan(r->angle);
-		if (r->is_ray_down)
-			r->y_intercept += c->tile_size;
 	}
 }
 

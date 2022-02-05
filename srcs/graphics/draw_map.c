@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:11:07 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/05 13:00:58 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/05 23:56:44 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 void	draw_map(t_config *conf)
 {
 	t_map	map;
-	t_graph	g;
 	int		i;
 	int		j;
 	int		r;
 
 	i = 0;
-	g = conf->graph;
 	map = conf->map;
 	r = conf->tile_size;
 	while (map.map[i])
@@ -30,9 +28,11 @@ void	draw_map(t_config *conf)
 		while (map.map[i][j])
 		{
 			if (map.map[i][j] == '1')
-				render_rect(g, (t_rect){j * r, i * r, r -2 , r - 2, 0x00AA1512});
+				render_rect(conf->graph, (t_rect){j * r, i * r, r - 2, r - 2,
+					0x00AA1512});
 			else
-				render_rect(g, (t_rect){j * r, i * r, r - 2, r - 2, 0x00FFFFFF});
+				render_rect(conf->graph, (t_rect){j * r, i * r, r - 2, r - 2,
+					0x00FFFFFF});
 			j++;
 		}
 		i++;

@@ -6,11 +6,55 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:47:02 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/05 12:12:03 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/05 23:53:36 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
+
+void	get_intercept(t_config *c, t_ray *r, int vertical)
+{
+	if (vertical == 0)
+	{
+		r->y_intercept = floor(c->player.y / c->tile_size) * c->tile_size;
+		r->x_intercept = c->player.x + (r->y_intercept - c->player.y)
+			/ tan(r->angle);
+	}
+	else
+	{
+		r->x_intercept = floor(c->player.x / c->tile_size) * c->tile_size;
+		r->y_intercept = c->player.y + (r->x_intercept - c->player.x)
+			* tan(r->angle);
+		if (r->is_ray_down)
+			r->y_intercept += c->tile_size;
+	}
+}
+
+void	get_delta(t_config *c, t_ray *r, int vertical)
+{
+	if (vertical == 0)
+	{
+		r->dy = c->tile_size;
+		if (r->is_ray_down == 0)
+			r->dy *= -1;
+		r->dx = c->tile_size / tan(r->angle);
+		if (!r->is_ray_right && r->dx > 0)
+			r->dx *= -1;
+		else if (r->is_ray_right && r->dx < 0)
+			r->dx *= -1;
+	}
+	else
+	{
+		r->dx = c->tile_size;
+		if (!r->is_ray_right)
+			r->dx *= -1;
+		r->dy = c->tile_size * tan(r->angle);
+		if (!r->is_ray_down && r->dy > 0)
+			r->dy *= -1;
+		else if (r->is_ray_down && r->dy < 0)
+			r->dy *= -1;
+	}
+}
 
 float	normalize_angle(float angle)
 {
@@ -23,27 +67,13 @@ float	normalize_angle(float angle)
 void	check_orientation(t_ray *r, float angle)
 {
 	if (angle > 0 && angle < M_PI)
-	{
 		r->is_ray_down = 1;
-		// printf("down\n");
-	}
 	else
-	{
 		r->is_ray_down = 0;
-		// printf("up\n");
-	}
-	r->is_ray_up = !r->is_ray_down;
 	if (angle > (3 * M_PI) / 2 || angle < M_PI / 2)
-	{
 		r->is_ray_right = 1;
-		// printf("right\n");
-	}
 	else
-	{
 		r->is_ray_right = 0;
-		// printf("left\n");
-	}
-	r->is_ray_left = !r->is_ray_right;
 }
 
 int	check_for_wall(t_config *c, float x, float y)

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:53:03 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/01 20:53:09 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/05 23:19:59 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,26 @@ typedef struct s_raycast
 {
 	float	x_intercept;
 	float	y_intercept;
-	float	x_step;
-	float	y_step;
+	float	dx;
+	float	dy;
 }	t_raycast;
 
 typedef struct s_ray
 {
-	float	r_angle;
-	float	wallHitX;
-	float	wallHitY;
-	float	distance;
-	int		hit_vert;
+	float	angle;
+	float	hor_wall_x;
+	float	hor_wall_y;
+	float	ver_wall_x;
+	float	ver_wall_y;
+	int		hit_ver;
 	int		hit_hor;
-	int		is_ray_up;
 	int		is_ray_down;
 	int		is_ray_right;
-	int		is_ray_left;
 	int		wall_content;
-
+	float	x_intercept;
+	float	y_intercept;
+	float	dx;
+	float	dy;
 }	t_ray;
 
 typedef struct s_player

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 15:30:22 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/03 15:12:16 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/05 23:54:18 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	is_there_wall(t_config *c, float x, float y)
 int	move_player(t_config *conf, t_player *p, t_map *m)
 {
 	float	move_step;
-	float	new_player_x;
-	float	new_player_y;
+	float	new_x;
+	float	new_y;
 
 	p->rotation_ang += p->turn_dir * p->turn_speed;
 	if (p->rotation_ang < 0)
@@ -40,13 +40,13 @@ int	move_player(t_config *conf, t_player *p, t_map *m)
 	else if (p->rotation_ang > 2 * M_PI)
 		p->rotation_ang = 0;
 	move_step = p->walk_dir * p->walk_speed;
-	new_player_x = p->x + cos(p->rotation_ang) * move_step;
-	new_player_y = p->y + sin(p->rotation_ang) * move_step;
-	if (m->map[(int)new_player_y / conf->tile_size][(int)new_player_x / conf->tile_size]
-		&& is_there_wall(conf, new_player_x, new_player_y) != 1)
+	new_x = p->x + cos(p->rotation_ang) * move_step;
+	new_y = p->y + sin(p->rotation_ang) * move_step;
+	if (m->map[(int)new_y / conf->tile_size][(int)new_x / conf->tile_size]
+		&& is_there_wall(conf, new_x, new_y) != 1)
 	{
-		p->x = new_player_x;
-		p->y = new_player_y;
+		p->x = new_x;
+		p->y = new_y;
 	}
 	return (0);
 }

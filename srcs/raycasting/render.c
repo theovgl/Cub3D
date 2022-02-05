@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:05:27 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/05 14:09:15 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/05 23:53:48 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,11 @@ static void	draw_rays(t_config *c)
 			c->player.x,
 			c->player.y
 		}, (t_point){
-			ray.wallHitX,
-			ray.wallHitY
+			ray.ver_wall_x,
+			ray.ver_wall_y
 		}, 0x00FFA701);
 		i++;
 	}
-
 }
 
 int	render(t_config *conf)

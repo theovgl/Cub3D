@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:47:02 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/02 16:13:20 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/05 12:12:03 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,11 @@ int	check_for_wall(t_config *c, float x, float y)
 	y_to_check = floor(y / c->tile_size);
 	if (x_to_check > c->map.map_width || y_to_check > c->map.map_height)
 	{
-		// printf("x: %i, map: %i\n", x_to_check, c->map.map_width);
 		return (1);
 	}
-	// printf("x_to_check: %d, y_to_check: %d\n", x_to_check, y_to_check);
 	if (c->map.map[y_to_check][x_to_check] == '1')
 	{
-		printf("ESCAPE x: %f, y: %f\n", x / c->tile_size, y / c->tile_size);
 		return (1);
 	}
-	printf("x: %f, y: %f\n", floor(x / c->tile_size), floor(y / c->tile_size));
 	return (0);
 }

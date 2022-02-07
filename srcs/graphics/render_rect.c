@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   render_rect.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 17:55:30 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/21 16:48:01 by tvogel           ###   ########.fr       */
+/*   Created: 2022/01/31 14:10:54 by tvogel            #+#    #+#             */
+/*   Updated: 2022/01/31 14:11:03 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "graphics.h"
 
-int	main(int argc, char const *argv[])
+void	render_rect(t_graph g, t_rect rect)
 {
-	t_config	conf;
+	int	i;
+	int	j;
 
-	if (argc != 2)
-		return (error_handling(&conf, 1, "Illegal number of arguments"));
-	init(&conf);
-	if (parsing(&conf, argv) == 1)
-		return (1);
-	if (start(&conf, &conf.graph))
-		return (1);
-	return (0);
+	i = rect.y;
+	while (i < rect.y + rect.height)
+	{
+		j = rect.x;
+		while (j < rect.x + rect.width)
+			my_mlx_pixel_put(g, j++, i, rect.color);
+		i++;
+	}
+	return ;
 }

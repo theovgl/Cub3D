@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 17:12:22 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/21 14:15:31 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/01/24 14:08:38 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,31 @@
 void	print_map(t_map map)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (map.map[i])
 	{
-		printf("%s\n", map.map[i]);
+		j = 0;
+		while (map.map[i][j])
+		{
+			if (map.map[i][j] == '1')
+				printf("\033[0;31m%c", map.map[i][j]);
+			else if (map.map[i][j] == '0')
+				printf("\033[0;37m%c", map.map[i][j]);
+			else if (map.map[i][j] == 'N' || map.map[i][j] == 'E'
+				|| map.map[i][j] == 'W' || map.map[i][j] == 'S')
+				printf("\033[1;33m%c", map.map[i][j]);
+			j++;
+		}
+		printf("\033[0m\n");
 		i++;
 	}
 }
 
 void	print_player(t_config *conf)
 {
-	printf("\nPlayer X: %i, Player Y: %i\n", conf->player.x, conf->player.y);
+	printf("\nPlayer X: %f, Player Y: %f\n", conf->player.x, conf->player.y);
 }
 
 int	parsing(t_config *conf, const char *av[])

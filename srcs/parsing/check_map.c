@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 10:25:41 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/21 14:07:24 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/01/24 10:05:11 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	check_player(t_config *c, char *line, int y)
 		if (line[i] == 'N' || line[i] == 'S'
 			|| line[i] == 'E' || line[i] == 'W')
 		{
-			c->player.x = i + 1;
+			c->player.x = i;
 			c->player.y = y;
 			c->player.seen++;
 			return (0);
@@ -70,7 +70,7 @@ int	check_map(t_config *conf, t_map map)
 	{
 		if (check_wall(map, map.map[i], i))
 			return (error_handling(conf, 1, "Map isn't closed"));
-		if (check_player(conf, map.map[i], i + 1) == 1)
+		if (check_player(conf, map.map[i], i) == 1)
 			return (1);
 		i++;
 	}

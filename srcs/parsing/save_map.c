@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:49:34 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/21 13:51:51 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/01/30 18:58:19 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,13 @@ static int	save_line(t_map *map, char *line, int pos)
 
 int	save_map(t_config *conf)
 {
-	int		fd;
 	char	*line;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	fd = open(conf->map.path, O_RDONLY);
+	conf->map_fd = open(conf->map.path, O_RDONLY);
 	conf->map.map = malloc(sizeof(char *) * (conf->map.map_height + 1));
 	if (!conf->map.map)
 		return (error_handling(conf, 1, "Malloc failed"));

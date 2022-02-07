@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:05:27 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/06 00:24:28 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/07 13:44:13 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	render(t_config *conf)
 {
 	update(conf);
 	draw_map(conf);
-	draw_player(conf, &conf->player);
 	draw_rays(conf);
+	draw_player(conf, &conf->player);
 	mlx_put_image_to_window(conf->graph.mlx, conf->graph.win,
 		conf->graph.img.mlx_img, 0, 0);
 	return (0);

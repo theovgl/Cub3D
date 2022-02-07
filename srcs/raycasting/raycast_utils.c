@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:47:02 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/06 00:06:24 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/07 13:45:34 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,21 @@ float	normalize_angle(float angle)
 void	check_orientation(t_ray *r, float angle)
 {
 	if (angle > 0 && angle < M_PI)
+	{
 		r->is_ray_down = 1;
+	}
 	else
+	{
 		r->is_ray_down = 0;
+	}
 	if (angle > (3 * M_PI) / 2 || angle < M_PI / 2)
+	{
 		r->is_ray_right = 1;
+	}
 	else
+	{
 		r->is_ray_right = 0;
+	}
 }
 
 int	check_for_wall(t_config *c, float x, float y)

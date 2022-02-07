@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:39:09 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/06 00:38:12 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/07 13:45:51 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	best_distance(t_config *c, t_ray *ray)
 
 void	cast_single_ray(t_config *c, t_ray *ray)
 {
-	check_orientation(ray, ray->angle);
 	ray->angle = normalize_angle(ray->angle);
+	check_orientation(ray, ray->angle);
 	check_horizontal(c, ray);
 	check_vertical(c, ray);
 	best_distance(c, ray);

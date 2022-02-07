@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:26:18 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/07 12:03:32 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/07 16:15:09 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	start(t_config *conf, t_graph *g)
 {
 	init_mlx(g);
 	init_raycast(conf, &conf->player);
+	init_colors_buffer(conf);
 	open_windows(g);
 	mlx_loop_hook(g->mlx, &render, conf);
 	mlx_hook(g->win, ClientMessage, StructureNotifyMask,

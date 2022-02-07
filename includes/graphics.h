@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:38:45 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/31 14:16:22 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/07 16:14:53 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ void	render_rect(t_graph g, t_rect rect);
 
 void	draw_map(t_config *conf);
 void	draw_player(t_config *conf, t_player *player);
+
+int	init_colors_buffer(t_config *c);
 
 #endif

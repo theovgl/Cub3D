@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   windows_tools.c                                    :+:      :+:    :+:   */
+/*   mlx_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:38:11 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/21 16:39:40 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/12 17:56:24 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	my_mlx_pixel_put(t_graph graph, int x, int y, int color)
 
 int	close_window(t_graph *g)
 {
-	mlx_destroy_window(g->mlx, g->win);
+	mlx_loop_end(g->mlx);
 	printf("👋\n");
 	return (0);
 }

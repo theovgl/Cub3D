@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:26:18 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/07 16:15:09 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/12 18:06:29 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	start(t_config *conf, t_graph *g)
 	mlx_hook(g->win, KeyPress, KeyPressMask, &keydown, conf);
 	mlx_hook(g->win, KeyRelease, KeyReleaseMask, &keyup, conf);
 	mlx_loop(g->mlx);
-	mlx_loop_end(conf->graph.mlx);
+	mlx_destroy_window(g->mlx, g->win);
 	mlx_destroy_display(g->mlx);
 	free(g->mlx);
 	return (0);

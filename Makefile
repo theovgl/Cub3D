@@ -1,26 +1,34 @@
 NAME		= cub3d
-SRCS		= $(addprefix srcs/, main.c init.c\
-			$(addprefix errors/, error_handling.c) \
-			$(addprefix parsing/, parsing.c file_check.c parse_settings.c parse_colors.c \
-				settings_check.c parse_map.c save_map.c check_map.c) \
-			$(addprefix graphics/, draw_map.c draw_line.c render_rect.c) \
-			$(addprefix raycasting/, start.c render.c mlx_tools.c input.c movement.c \
-				raycast.c raycast_utils.c check_intersection.c three_dimensions.c) \
-			$(addprefix utils/, ft_strlen.c ft_strncmp.c ft_isdigit.c ft_atoi.c ft_strdup.c\
-			$(addprefix get_next_line/, get_next_line.c get_next_line_utils.c)))
-OBJS		= $(SRCS:.c=.o)
+SRCS		= main.c init.c\
+			error_handling.c \
+			parsing.c file_check.c parse_settings.c parse_colors.c \
+			settings_check.c parse_map.c save_map.c check_map.c \
+			draw_map.c draw_line.c render_rect.c \
+			start.c render.c mlx_tools.c input.c movement.c \
+			raycast.c raycast_utils.c check_intersection.c three_dimensions.c \
+			ft_strlen.c ft_strncmp.c ft_isdigit.c ft_atoi.c ft_strdup.c\
+			get_next_line.c get_next_line_utils.c
+OBJS		= $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
+OBJSDIR		= objs
 INCL		= -I includes -I lib/minilibx-linux
 MLXDIR		= lib/minilibx-linux
 MLX			= $(MLXDIR)/libmlx.a
 LIBS		= -L$(MLXDIR) -lmlx -lXext -lX11 -lm
 CC			= clang
-CFLAGS		= -Wall -Wextra -g3 -fsanitize=address
+CFLAGS		= -Wall -Wextra -g3 #-fsanitize=address
 RM			= rm -f
 
-%.o:		%.c
+vpath %.c srcs/ srcs/errors/ srcs/parsing/ srcs/graphics/ srcs/raycasting/ srcs/utils/ srcs/utils/get_next_line/
+
+$(OBJSDIR)/%.o:	%.c
 			$(CC) $(CFLAGS) $(INCL) -c $< -o $@
 
 all:		$(MLX) $(NAME)
+
+$(OBJS): | $(OBJSDIR)
+
+$(OBJSDIR):
+			mkdir $(OBJSDIR)
 
 $(NAME):	$(OBJS)
 			$(CC) $(CFLAGS) $^ $(LIBS) -o $@
@@ -30,6 +38,7 @@ $(MLX):
 
 clean:
 			$(RM) $(OBJS)
+			rm -rf $(OBJSDIR)
 
 fclean:		clean
 			$(RM) $(NAME)

@@ -6,20 +6,23 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:08:31 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/16 17:33:50 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/16 17:52:42 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_walls(t_config *c, int col, int top, int bottom)
+void	draw_walls(t_config *c, int col, int top, int bottom, t_ray ray)
 {
 	int	i;
 
 	i = top;
 	while (i < bottom)
 	{
-		my_mlx_pixel_put(c->colors_buf, col, i, 0x00FFFFFF);
+		if (ray.hit_hor)
+			my_mlx_pixel_put(c->colors_buf, col, i, 0x00EEEEEE);
+		else
+			my_mlx_pixel_put(c->colors_buf, col, i, 0x00FFFFFF);
 		i++;
 	}
 }
@@ -62,7 +65,7 @@ void	generate_walls(t_config *c, t_ray *rays)
 		wall_bottom = (SCR_HEIGHT / 2) + (wall_render_height / 2);
 		if (wall_bottom > SCR_HEIGHT)
 			wall_bottom = SCR_HEIGHT;
-		draw_walls(c, i, wall_top, wall_bottom);
+		draw_walls(c, i, wall_top, wall_bottom, rays[i]);
 		i++;
 	}
 }

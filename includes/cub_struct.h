@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:53:03 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/16 11:16:06 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/16 17:39:28 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,6 @@
 # define CUB_STRUCT_H
 
 # include "cub3d.h"
-
-typedef struct s_raycast
-{
-	float	x_intercept;
-	float	y_intercept;
-	float	dx;
-	float	dy;
-}	t_raycast;
 
 typedef struct s_ray
 {
@@ -110,7 +102,6 @@ typedef struct s_config
 	t_map		map;
 	t_player	player;
 	t_graph		graph;
-	t_raycast	raycast;
 	t_ray		rays[SCR_WIDTH];
 	t_img		colors_buf;
 }	t_config;

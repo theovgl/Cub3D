@@ -15,7 +15,7 @@ MLXDIR		= lib/minilibx-linux
 MLX			= $(MLXDIR)/libmlx.a
 LIBS		= -L$(MLXDIR) -lmlx -lXext -lX11 -lm
 CC			= clang
-CFLAGS		= -Wall -Wextra -g3 #-fsanitize=address
+CFLAGS		= -Wall -Wextra -g3 #-o3 -fsanitize=address
 RM			= rm -f
 
 vpath %.c srcs/ srcs/errors/ srcs/parsing/ srcs/graphics/ srcs/raycasting srcs/utils srcs/utils/get_next_line

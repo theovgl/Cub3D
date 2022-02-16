@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:53:03 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/07 16:10:30 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/16 11:16:06 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ typedef struct s_config
 	t_graph		graph;
 	t_raycast	raycast;
 	t_ray		rays[SCR_WIDTH];
-	u_int32_t	*colors_buffer;
+	t_img		colors_buf;
 }	t_config;
 
 #endif

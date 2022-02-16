@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:10:54 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/31 14:11:03 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/16 11:41:25 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	render_rect(t_graph g, t_rect rect)
 	{
 		j = rect.x;
 		while (j < rect.x + rect.width)
-			my_mlx_pixel_put(g, j++, i, rect.color);
+			my_mlx_pixel_put(g.img, j++, i, rect.color);
 		i++;
 	}
 	return ;

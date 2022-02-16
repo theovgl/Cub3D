@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:38:11 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/12 17:56:24 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/16 11:39:33 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	my_mlx_loop_hook(void)
 	return (0);
 }
 
-void	my_mlx_pixel_put(t_graph graph, int x, int y, int color)
+void	my_mlx_pixel_put(t_img img, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = graph.img.addr + (y * graph.img.line_len + x * (graph.img.bpp / 8));
+	dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
 	*(unsigned int *)dst = color;
 }
 

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:26:18 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/12 18:06:29 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/16 17:06:01 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ static void	init_raycast(t_config *c, t_player *player)
 	player->fov = 60 * (M_PI / 180);
 	player->x *= c->tile_size;
 	player->y *= c->tile_size;
+}
+
+int	init_colors_buffer(t_config *c)
+{
+	c->colors_buf.mlx_img = mlx_new_image(c->graph.mlx, SCR_WIDTH, SCR_HEIGHT);
+	c->colors_buf.addr = mlx_get_data_addr(c->colors_buf.mlx_img,
+			&c->colors_buf.bpp, &c->colors_buf.line_len, &c->colors_buf.endian);
+	return (0);
 }
 
 int	start(t_config *conf, t_graph *g)

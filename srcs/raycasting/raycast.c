@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:39:09 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/07 13:45:51 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/16 17:47:05 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	best_distance(t_config *c, t_ray *ray)
 		ray->distance = ver_hit_distance;
 		ray->x = ray->ver_wall_x;
 		ray->y = ray->ver_wall_y;
+		ray->hit_hor = 0;
 	}
 	else
 	{

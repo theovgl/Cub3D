@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:08:31 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/16 17:52:42 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/22 16:59:21 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_walls(t_config *c, int col, int top, int bottom, t_ray ray)
 
 float	fix_fisheye(t_player p, t_ray ray, float distance)
 {
-	int	result;
+	float	result;
 
 	result = cos(ray.angle - p.rotation_ang) * distance;
 	return (result);
@@ -82,9 +82,9 @@ void	clear_buffer(t_config *c)
 		while (y < SCR_WIDTH)
 		{
 			if (y < SCR_HEIGHT / 2)
-				my_mlx_pixel_put(c->colors_buf, x, y, 0x0063ACFF);
+				my_mlx_pixel_put(c->colors_buf, x, y, c->ceiling.hex);
 			else
-				my_mlx_pixel_put(c->colors_buf, x, y, 0x006DB352);
+				my_mlx_pixel_put(c->colors_buf, x, y, c->floor.hex);
 			y++;
 		}
 		x++;

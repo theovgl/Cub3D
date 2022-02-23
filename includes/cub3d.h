@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:02:08 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/16 11:39:49 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/23 15:32:23 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		handle_input(int key, t_config *conf);
 int		my_mlx_loop_hook(void);
 int		close_window(t_graph *g);
 void	my_mlx_pixel_put(t_img img, int x, int y, int color);
+void	clear_buffer(t_config *c);
 
 int		keydown(int keysym, t_config *conf);
 int		keyup(int keysym, t_config *conf);

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:37:59 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/06 00:38:53 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/23 15:32:51 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 int		start(t_config *conf, t_graph *g);
 void	cast_rays(t_config *c, t_player *p);
+void	generate_walls(t_config *c, t_ray *rays);
 int		render(t_config *conf);
 
 float	normalize_angle(float angle);

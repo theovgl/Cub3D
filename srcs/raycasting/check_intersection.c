@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 00:37:58 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/06 00:38:14 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/02/23 15:19:35 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	check_horizontal(t_config *c, t_ray *r)
 		if (check_for_wall(c, next_hor_x, next_hor_y))
 		{
 			r->hit_hor = 1;
-			r->hor_wall_x = next_hor_x;
-			r->hor_wall_y = next_hor_y;
 			break ;
 		}
 		else
@@ -39,6 +37,8 @@ void	check_horizontal(t_config *c, t_ray *r)
 			next_hor_y += r->dy;
 		}
 	}
+	r->hor_wall_x = next_hor_x;
+	r->hor_wall_y = next_hor_y;
 }
 
 void	check_vertical(t_config *c, t_ray *r)
@@ -58,8 +58,6 @@ void	check_vertical(t_config *c, t_ray *r)
 		if (check_for_wall(c, next_ver_x, next_ver_y))
 		{
 			r->hit_ver = 1;
-			r->ver_wall_x = next_ver_x;
-			r->ver_wall_y = next_ver_y;
 			break ;
 		}
 		else
@@ -68,4 +66,6 @@ void	check_vertical(t_config *c, t_ray *r)
 			next_ver_y += r->dy;
 		}
 	}
+	r->ver_wall_x = next_ver_x;
+	r->ver_wall_y = next_ver_y;
 }

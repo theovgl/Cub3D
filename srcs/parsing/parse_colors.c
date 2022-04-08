@@ -6,7 +6,7 @@
 /*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 19:00:36 by tvogel            #+#    #+#             */
-/*   Updated: 2022/04/08 12:10:40 by abiju-du         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:55:50 by abiju-du         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	check_color(t_config *c, unsigned int r,
 	return (0);
 }
 
-static void	save_color(t_config *conf, t_colors *color, char *line)
+static int	save_color(t_config *conf, t_colors *color, char *line)
 {
 	int	i;
 	int	value;
@@ -54,20 +54,22 @@ static void	save_color(t_config *conf, t_colors *color, char *line)
 		if (ft_isspace(line[i]) || (line[i] == ',' && color->b == -1))
 			i++;
 		else if (line[i])
-		{
-			error_handling(conf, 1, "Wrong color format");
-			return ;
-		}
+			return (error_handling(conf, 1, "Wrong color format"));
 	}
-	if (check_color(conf, color->r, color->g, color->b, color->hex) == 0)
-		color->seen = 1;
+	return (check_color(conf, color->r, color->g, color->b, color->hex));
 }
 
 int	parse_colors(t_config *conf, char *line)
 {
 	if (ft_strncmp("F", line, 1) == 0)
-		save_color(conf, &conf->floor, line);
+		if (save_color(conf, &conf->floor, line))
+			return (1);
+		else
+			conf->floor.seen = 1;
 	if (ft_strncmp("C", line, 1) == 0)
-		save_color(conf, &conf->ceiling, line);
+		if (save_color(conf, &conf->ceiling, line))
+			return (1);
+		else
+			conf->ceiling.seen = 1;
 	return (0);
 }

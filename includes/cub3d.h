@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:02:08 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/23 15:32:23 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/03/30 15:36:13 by abiju-du         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define SCR_WIDTH 1280
-# define SCR_HEIGHT 720
+# define SCR_WIDTH 480
+# define SCR_HEIGHT 250
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -53,5 +53,6 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *nptr);
 char	*ft_strdup(const char *src);
+int		ft_isspace(const char c);
 
 #endif

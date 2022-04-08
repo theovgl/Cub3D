@@ -6,7 +6,7 @@
 /*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 19:00:36 by tvogel            #+#    #+#             */
-/*   Updated: 2022/04/08 12:03:31 by abiju-du         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:10:40 by abiju-du         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static void	save_color(t_config *conf, t_colors *color, char *line)
 	i = 1;
 	while (line[i])
 	{
-printf("line[%d] == %c\n", i, line[i]);
 		value = 0;
 		if (ft_isdigit(line[i]))
 		{

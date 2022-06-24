@@ -25,11 +25,15 @@ void	print_map(t_map map)
 		{
 			if (map.map[i][j] == '1')
 				printf("\033[0;31m%c", map.map[i][j]);
-			else if (map.map[i][j] == '0')
+			else if (map.map[i][j] == '0' || map.map[i][j] == 'x')
 				printf("\033[0;37m%c", map.map[i][j]);
 			else if (map.map[i][j] == 'N' || map.map[i][j] == 'E'
 				|| map.map[i][j] == 'W' || map.map[i][j] == 'S')
 				printf("\033[1;33m%c", map.map[i][j]);
+			else if (map.map[i][j] == '\t')
+				printf("    ");
+			else
+				printf(" ");
 			j++;
 		}
 		printf("\033[0m\n");

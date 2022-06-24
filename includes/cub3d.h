@@ -33,6 +33,17 @@
 # include "graphics.h"
 # include "raycast.h"
 
+
+typedef struct s_list t_list;
+struct s_list
+{
+    int x;
+    int y;
+    t_list *next;
+    t_list *prev;
+};
+
+
 int		init(t_config *conf);
 
 int		open_windows(t_graph *graph);
@@ -48,11 +59,22 @@ int		move_player(t_config *conf, t_player *p, t_map *m);
 
 int		error_handling(t_config *conf, int return_value, char *message);
 
+// utils
 size_t	ft_strlen(const char *src);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *nptr);
 char	*ft_strdup(const char *src);
 int		ft_isspace(const char c);
+void	ft_lstadd_back(t_list **alst, t_list *new);
+void	ft_lstadd_front(t_list **alst, t_list *new);
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+t_list	*ft_lstlast(t_list *lst);
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void*));
+t_list	*ft_lstnew(int x, int y);
+int	    ft_lstsize(t_list *lst);
+int		ft_isprint(int c);
 
 #endif

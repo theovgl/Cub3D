@@ -20,7 +20,7 @@ int	is_map(t_config *conf, char *line, int print)
 	while (line[i])
 	{
 		if (line[i] != '1' && line[i] != '0' && line[i] != 'N' && line[i] != 'S'
-			&& line[i] != 'E' && line[i] != 'W' && line[i] != ' ')
+			&& line[i] != 'E' && line[i] != 'W' && (!ft_isspace(line[i])))
 		{
 			if (print)
 				return (error_handling(conf, 1, "Bad char. in map"));

@@ -12,13 +12,13 @@
 
 #include "cub3d.h"
 
-static int	encode_rgb(unsigned int red, unsigned int green, unsigned int blue)
+static int encode_rgb(unsigned int red, unsigned int green, unsigned int blue)
 {
 	return (red << 16 | green << 8 | blue);
 }
 
-static int	check_color(t_config *c, unsigned int r,
-	unsigned int g, unsigned int b, unsigned int hex)
+static int check_color(t_config *c, unsigned int r,
+					   unsigned int g, unsigned int b, unsigned int hex)
 {
 	if (r > 255 || r < 0)
 		return (error_handling(c, 1, "Wrong color format"));
@@ -30,10 +30,10 @@ static int	check_color(t_config *c, unsigned int r,
 	return (0);
 }
 
-static int	save_color(t_config *conf, t_colors *color, char *line)
+static int save_color(t_config *conf, t_colors *color, char *line)
 {
-	int	i;
-	int	value;
+	int i;
+	int value;
 	int coma;
 
 	i = 1;
@@ -59,7 +59,7 @@ static int	save_color(t_config *conf, t_colors *color, char *line)
 	return (check_color(conf, color->r, color->g, color->b, color->hex));
 }
 
-int	parse_colors(t_config *conf, char *line)
+int parse_colors(t_config *conf, char *line)
 {
 	if (ft_strncmp("F", line, 1) == 0)
 		if (save_color(conf, &conf->floor, line))

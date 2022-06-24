@@ -25,10 +25,10 @@ static int	save_line(t_map *map, char *line, int pos)
 		if (line[i] == '0' || line[i] == '1' || line[i] == 'N'
 			|| line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
 			map->map[pos][j] = line[i];
-		else if (line[i] == ' ')
-			map->map[pos][j] = '1';
-		else
-			map->map[pos][j] = '1';
+		// else if (line[i] == ' ')
+		// 	map->map[pos][j] = '1';
+		// else
+		// 	map->map[pos][j] = '1';
 		if (line[i])
 			i++;
 		j++;

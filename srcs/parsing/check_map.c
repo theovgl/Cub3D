@@ -68,11 +68,13 @@ int	check_map(t_config *conf, t_map map)
 	conf->player.seen = 0;
 	while (map.map[i])
 	{
-		if (check_wall(map, map.map[i], i))
-			return (error_handling(conf, 1, "Map isn't closed"));
+		// if (check_wall(map, map.map[i], i))
+		// 	return (error_handling(conf, 1, "Map isn't closed"));
 		if (check_player(conf, map.map[i], i) == 1)
 			return (1);
 		i++;
 	}
+	if (floodfill(conf, map))
+		return (error_handling(conf, 1, "Floodfill found an error"));
 	return (0);
 }

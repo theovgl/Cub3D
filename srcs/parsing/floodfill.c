@@ -6,7 +6,7 @@
 /*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 16:55:18 by arnaud            #+#    #+#             */
-/*   Updated: 2022/06/24 16:56:06 by arnaud           ###   ########.fr       */
+/*   Updated: 2022/06/27 15:22:24 by arnaud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@ void	check_inside(t_map map, t_list *q)
 	}
 }
 
+int	error_found(t_map map, t_list *q)
+{
+	if (ft_isspace(map.map[q->y][q->x])
+		|| !ft_isprint(map.map[q->y][q->x])
+		|| (map.map[q->y][q->x] == 'x' &&
+		(q->x == 0 || q->x == map.map_width - 1
+		|| q->y == 0 || q->y == map.map_height - 1)))
+	{
+		return (1);
+	}
+	return (0);
+}
+
 int	floodfill(t_config *conf, t_map m)
 {
 	int		i;
@@ -48,16 +61,14 @@ int	floodfill(t_config *conf, t_map m)
 	t_map	map;
 
 	map = m;
+	if (map.map[0] == 0)
+		return (1);
 	q = ft_lstnew(conf->player.x, conf->player.y);
 	add_nodes(q);
 	while (ft_lstsize(q))
 	{
 		check_inside(map, q);
-		if (ft_isspace(map.map[q->y][q->x])
-		|| !ft_isprint(map.map[q->y][q->x])
-		|| (map.map[q->y][q->x] == 'x' &&
-		(q->x == 0 || q->x == map.map_width - 1
-		|| q->y == 0 || q->y == map.map_height - 1)))
+		if (error_found(map, q))
 		{
 			ft_lstclear(&q, free);
 			return (1);

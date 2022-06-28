@@ -6,7 +6,7 @@
 /*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 16:55:18 by arnaud            #+#    #+#             */
-/*   Updated: 2022/06/27 15:22:24 by arnaud           ###   ########.fr       */
+/*   Updated: 2022/06/28 14:24:07 by arnaud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ void	add_nodes(t_list *q)
 
 void	check_inside(t_map map, t_list *q)
 {
-	if (map.map[q->y][q->x] == '0')
+	if (map.map[q->y][q->x] == '0'
+		|| map.map[q->y][q->x] == 'E'
+		|| map.map[q->y][q->x] == 'N'
+		|| map.map[q->y][q->x] ==  'W'
+		|| map.map[q->y][q->x] ==  'S')
 	{
 		map.map[q->y][q->x] = 'x';
 		add_nodes(q);

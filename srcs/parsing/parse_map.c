@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:50:05 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/21 10:09:52 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/28 11:46:02 by arnaud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	parse_map(t_config *conf)
 		if (conf->error)
 			return (1);
 	}
+printf("map weight == %d\n", conf->map.map_height);
 	free(line);
 	return (0);
 }

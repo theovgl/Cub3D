@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:42:10 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/15 21:08:23 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:54:27 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	keydown(int keysym, t_config *conf)
 		printf("Escape\n");
 	}
 	if (keysym == XK_w)
-		conf->player.walk_dir = 1;
+		move_forward(conf, &conf->player, &conf->map);
 	if (keysym == XK_s)
 		conf->player.walk_dir = -1;
 	if (keysym == XK_Right)

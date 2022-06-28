@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 10:25:41 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/24 10:05:11 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/27 14:50:36 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static int	check_player(t_config *c, char *line, int y)
 			c->player.x = i;
 			c->player.y = y;
 			c->player.seen++;
+			line[i] = '0';
 			return (0);
 		}
 		i++;

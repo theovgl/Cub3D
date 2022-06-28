@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:53:03 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/16 17:39:28 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/23 18:49:05 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@
 typedef struct s_ray
 {
 	float	angle;
-	float	hor_wall_x;
-	float	hor_wall_y;
-	float	ver_wall_x;
-	float	ver_wall_y;
-	int		hit_ver;
-	int		hit_hor;
-	int		is_ray_down;
-	int		is_ray_right;
-	int		wall_content;
-	float	x_intercept;
-	float	y_intercept;
-	float	dx;
-	float	dy;
-	float	x;
-	float	y;
-	float	distance;
+	double	camera_x;
+	double	rayDir_x;
+	double	rayDir_y;
+	int		map_x;
+	int		map_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	delta_x;
+	double	delta_y;
+	double	perp_wall_dist;
+	double	step_x;
+	double	step_y;
+	int		hit;
+	int		side;
+	int		top;
+	int		bottom;
 }	t_ray;
 
 typedef struct s_player
@@ -49,6 +49,10 @@ typedef struct s_player
 	float	turn_speed;
 	int		seen;
 	float	fov;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 }	t_player;
 
 typedef struct s_map

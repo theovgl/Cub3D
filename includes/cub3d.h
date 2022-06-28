@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:02:08 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/23 15:32:23 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/27 19:35:46 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	clear_buffer(t_config *c);
 
 int		keydown(int keysym, t_config *conf);
 int		keyup(int keysym, t_config *conf);
-int		move_player(t_config *conf, t_player *p, t_map *m);
+void move_forward(t_config *c, t_player *p, t_map *m);
 
 int		error_handling(t_config *conf, int return_value, char *message);
 

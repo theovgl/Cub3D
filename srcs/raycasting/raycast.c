@@ -6,87 +6,128 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:39:09 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/16 17:47:05 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/27 19:00:00 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-float	get_distance(float x1, float y1, float x2, float y2)
+
+
+// void	cast_single_ray(t_config *c, t_ray *ray)
+// {
+// 	ray->angle = normalize_angle(ray->angle);
+// 	check_orientation(ray, ray->angle);
+// 	check_horizontal(c, ray);
+// 	check_vertical(c, ray);
+// 	best_distance(c, ray);
+// }
+
+static void	dda(t_config *c, t_player *p, t_ray *r)
 {
-	float	distance;
-	float	y_distance;
-	float	x_distance;
-
-	x_distance = (x2 - x1) * (x2 - x1);
-	y_distance = (y2 - y1) * (y2 - y1);
-	distance = sqrt(x_distance + y_distance);
-	return (distance);
-}
-
-void	best_distance(t_config *c, t_ray *ray)
-{
-	float	hor_hit_distance;
-	float	ver_hit_distance;
-
-	if (ray->hit_hor)
-		hor_hit_distance = get_distance(c->player.x, c->player.y,
-				ray->hor_wall_x, ray->hor_wall_y);
-	else
-		hor_hit_distance = (float)INT_MAX;
-	if (ray->hit_ver)
-		ver_hit_distance = get_distance(c->player.x, c->player.y,
-				ray->ver_wall_x, ray->ver_wall_y);
-	else
-		ver_hit_distance = (float)INT_MAX;
-	if (ver_hit_distance < hor_hit_distance)
+	while (r->hit == 0)
 	{
-		ray->distance = ver_hit_distance;
-		ray->x = ray->ver_wall_x;
-		ray->y = ray->ver_wall_y;
-		ray->hit_hor = 0;
-	}
-	else
-	{
-		ray->distance = hor_hit_distance;
-		ray->x = ray->hor_wall_x;
-		ray->y = ray->hor_wall_y;
+		if (r->sidedist_x < r->sidedist_y)
+		{
+			r->sidedist_x += r->delta_x;
+			r->map_x += r->step_x;
+			r->side = 0;
+		}
+		else
+		{
+			r->sidedist_y += r->delta_y;
+			r->map_y += r->step_y;
+			r->side = 1;
+		}
+		printf("%i, %i\n", r->map_x, r->map_y);
+		// printf("%c\n", c->map.map[11][0]);
+		if (c->map.map[r->map_y][r->map_x] == 1)
+			r->hit = 1;
 	}
 }
 
-void	cast_single_ray(t_config *c, t_ray *ray)
+static void	get_wall_height(t_player *p, t_ray *r)
 {
-	ray->angle = normalize_angle(ray->angle);
-	check_orientation(ray, ray->angle);
-	check_horizontal(c, ray);
-	check_vertical(c, ray);
-	best_distance(c, ray);
+	int	line_height;
+	if (r->side == 0)
+		r->perp_wall_dist = r->sidedist_x - r->delta_x;
+	else
+		r->perp_wall_dist = r->sidedist_y - r->delta_y;
+
+	line_height = (int)(SCR_HEIGHT / r->perp_wall_dist);
+	r->top = -line_height / 2 + SCR_HEIGHT / 2;
+	if (r->top < 0)
+		r->top = 0;
+	r->bottom = line_height / 2 + SCR_HEIGHT / 2;
+	if (r->bottom >= SCR_HEIGHT)
+	{
+		r->bottom = SCR_HEIGHT - 1;
+	}
+
 }
 
-void	init_ray(t_ray *r)
+static void	init_sidedist(t_player *p, t_ray *r)
 {
-	r->hor_wall_x = 0;
-	r->hor_wall_y = 0;
-	r->ver_wall_x = 0;
-	r->ver_wall_y = 0;
-	r->is_ray_down = 0;
-	r->is_ray_right = 0;
+	if (r->rayDir_x < 0)
+	{
+		r->step_x = -1;
+		r->sidedist_x = (p->x - r->map_x) * r->delta_x;
+	}
+	else
+	{
+		r->step_x = 1;
+		r->sidedist_x = (r->map_x + 1.0 - p->x) * r->delta_x;
+	}
+	if (r->rayDir_y < 0)
+	{
+		r->step_y = -1;
+		r->sidedist_y = (p->y - r->map_y) * r->delta_y;
+	}
+	else
+	{
+		r->step_y = 1;
+		r->sidedist_y = (r->map_y + 1.0 - p->y) * r->delta_y;
+	}
+}
+
+static void	init_ray(t_player *p, t_ray *r, int id)
+{
+	r->camera_x = 2 * id / (double)SCR_WIDTH - 1;
+	r->rayDir_x = p->dir_x + p->plane_x * r->camera_x;
+	r->rayDir_y = p->dir_y + p->plane_y * r->camera_x;
+	r->map_x = (int)p->x;
+	r->map_y = (int)p->y;
+	if (r->rayDir_x == 0)
+		r->delta_x = (double)INT_MAX;
+	else
+		r->delta_x = fabs(1 / r->rayDir_x);
+	if (r->rayDir_y == 0)
+		r->delta_y = (double)INT_MAX;
+	else
+		r->delta_y = fabs(1 / r->rayDir_y);
+	r->hit = 0;
+
 	return ;
 }
 
 void	cast_rays(t_config *c, t_player *p)
 {
 	int		id;
-	float	ray_angle;
 
 	id = 0;
-	ray_angle = p->rotation_ang - (p->fov / 2);
-	while (id < SCR_WIDTH)
+
+	//provisoire
+	p->dir_x = -1;
+	p->dir_y = 0;
+	p->plane_x = 0;
+	p->plane_y = 0.66;
+
+	while (id < 1)
 	{
-		init_ray(&c->rays[id]);
-		c->rays[id].angle = ray_angle;
-		cast_single_ray(c, &c->rays[id]);
-		ray_angle += p->fov / SCR_WIDTH;
+		init_ray(p, &c->rays[id], id);
+		init_sidedist(p, &c->rays[id]);
+		dda(c, p, &c->rays[id]);
+		get_wall_height(p, &c->rays[id]);
 		id++;
 	}
 }

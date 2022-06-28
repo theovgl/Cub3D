@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:26:18 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/22 16:52:19 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/24 16:25:59 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void	init_raycast(t_config *c, t_player *player)
 	player->width = c->tile_size / 2;
 	player->height = c->tile_size / 2;
 	player->fov = 60 * (M_PI / 180);
-	player->x *= c->tile_size;
-	player->y *= c->tile_size;
+	// player->x *= c->tile_size;
+	// player->y *= c->tile_size;
 }
 
 int	init_colors_buffer(t_config *c)
@@ -46,7 +46,7 @@ int	init_colors_buffer(t_config *c)
 int	start(t_config *conf, t_graph *g)
 {
 	init_mlx(g);
-	init_raycast(conf, &conf->player);
+	// init_raycast(conf, &conf->player);
 	init_colors_buffer(conf);
 	open_windows(g);
 	mlx_loop_hook(g->mlx, &render, conf);

@@ -6,7 +6,7 @@
 /*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 10:25:41 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/27 17:31:56 by arnaud           ###   ########.fr       */
+/*   Updated: 2022/06/28 16:28:44 by arnaud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ int	check_map(t_config *conf, t_map map)
 	conf->player.seen = 0;
 	while (map.map[i])
 	{
-		// if (check_wall(map, map.map[i], i))
-		// 	return (error_handling(conf, 1, "Map isn't closed"));
 		if (check_player(conf, map.map[i], i) == 1)
 			return (1);
 		i++;
@@ -78,4 +76,4 @@ int	check_map(t_config *conf, t_map map)
 	if (floodfill(conf, map))
 		return (error_handling(conf, 1, "Floodfill found a map leak"));
 	return (0);
-	}
+}

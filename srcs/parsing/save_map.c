@@ -6,7 +6,7 @@
 /*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:49:34 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/28 14:15:03 by arnaud           ###   ########.fr       */
+/*   Updated: 2022/06/28 16:29:43 by arnaud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,12 @@ static int	save_line(t_map *map, char *line, int pos)
 		if (line[i] == '0' || line[i] == '1' || line[i] == 'N'
 			|| line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
 			map->map[pos][j] = line[i];
-		// else if (line[i] == ' ')
-		// 	map->map[pos][j] = '1';
-		// else
-		// 	map->map[pos][j] = '1';
 		if (line[i])
 			i++;
 		j++;
 	}
-if (pos == map->map_height && i > 0)
-	map->map_height++;
+	if (pos == map->map_height && i > 0)
+		map->map_height++;
 	map->map[pos][j] = '\0';
 	return (0);
 }

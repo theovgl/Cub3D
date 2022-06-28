@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 19:00:36 by tvogel            #+#    #+#             */
-/*   Updated: 2021/12/30 20:43:36 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/04/08 14:55:50 by abiju-du         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	encode_rgb(unsigned int red, unsigned int green, unsigned int blue)
+static int encode_rgb(unsigned int red, unsigned int green, unsigned int blue)
 {
 	return (red << 16 | green << 8 | blue);
 }
 
-static int	check_color(t_config *c, unsigned int r,
-	unsigned int g, unsigned int b)
+static int check_color(t_config *c, unsigned int r,
+					   unsigned int g, unsigned int b, unsigned int hex)
 {
 	if (r > 255 || r < 0)
 		return (error_handling(c, 1, "Wrong color format"));
@@ -26,15 +26,17 @@ static int	check_color(t_config *c, unsigned int r,
 		return (error_handling(c, 1, "Wrong color format"));
 	if (b > 255 || b < 0)
 		return (error_handling(c, 1, "Wrong color format"));
+	hex = encode_rgb(r, g, b);
 	return (0);
 }
 
-static void	save_color(t_config *conf, t_colors *color, char *line)
+static int save_color(t_config *conf, t_colors *color, char *line)
 {
-	int	i;
-	int	value;
+	int i;
+	int value;
+	int coma;
 
-	i = 0;
+	i = 1;
 	while (line[i])
 	{
 		value = 0;
@@ -49,19 +51,25 @@ static void	save_color(t_config *conf, t_colors *color, char *line)
 			else if (color->b == -1)
 				color->b = value;
 		}
-		if (line[i])
+		if (ft_isspace(line[i]) || (line[i] == ',' && color->b == -1))
 			i++;
+		else if (line[i])
+			return (error_handling(conf, 1, "Wrong color format"));
 	}
-	if (check_color(conf, color->r, color->g, color->b) == 0)
-		color->seen = 1;
-	color->hex = encode_rgb(color->r, color->g, color->b);
+	return (check_color(conf, color->r, color->g, color->b, color->hex));
 }
 
-int	parse_colors(t_config *conf, char *line)
+int parse_colors(t_config *conf, char *line)
 {
 	if (ft_strncmp("F", line, 1) == 0)
-		save_color(conf, &conf->floor, line);
+		if (save_color(conf, &conf->floor, line))
+			return (1);
+		else
+			conf->floor.seen = 1;
 	if (ft_strncmp("C", line, 1) == 0)
-		save_color(conf, &conf->ceiling, line);
+		if (save_color(conf, &conf->ceiling, line))
+			return (1);
+		else
+			conf->ceiling.seen = 1;
 	return (0);
 }

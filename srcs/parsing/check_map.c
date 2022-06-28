@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 10:25:41 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/24 10:05:11 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/27 17:31:56 by arnaud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,12 @@ static int	check_player(t_config *c, char *line, int y)
 			c->player.x = i;
 			c->player.y = y;
 			c->player.seen++;
+			c->map.map[y][i] = '0';
 			return (0);
 		}
 		i++;
 	}
-	if (y == c->map.map_height && c->player.seen == 0)
+	if (y == c->map.map_height - 1 && c->player.seen == 0)
 		return (error_handling(c, 1, "Missing player position"));
 	if (y == c->map.map_height && c->player.seen > 1)
 		return (error_handling(c, 1, "More than one player position"));
@@ -68,11 +69,13 @@ int	check_map(t_config *conf, t_map map)
 	conf->player.seen = 0;
 	while (map.map[i])
 	{
-		if (check_wall(map, map.map[i], i))
-			return (error_handling(conf, 1, "Map isn't closed"));
+		// if (check_wall(map, map.map[i], i))
+		// 	return (error_handling(conf, 1, "Map isn't closed"));
 		if (check_player(conf, map.map[i], i) == 1)
 			return (1);
 		i++;
 	}
+	if (floodfill(conf, map))
+		return (error_handling(conf, 1, "Floodfill found a map leak"));
 	return (0);
-}
+	}

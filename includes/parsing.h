@@ -15,14 +15,16 @@
 
 # include "cub3d.h"
 
-int	parsing(t_config *conf, const char *argv[]);
-int	check_file(t_config *conf, const char *file_path);
-int	parse_settings(t_config *conf);
-int	parse_colors(t_config *conf, char *line);
-int	parse_map(t_config *conf);
-int	save_map(t_config *conf);
-int	settings_checker(t_config *conf);
-int	is_map(t_config *conf, char *line, int print);
-int	check_map(t_config *conf, t_map map);
+int 	parsing(t_config *conf, const char *argv[]);
+int 	check_file(t_config *conf, const char *file_path);
+int 	parse_settings(t_config *conf);
+int 	parse_colors(t_config *conf, char *line);
+int 	parse_map(t_config *conf);
+int 	save_map(t_config *conf);
+int 	settings_checker(t_config *conf);
+int 	is_map(t_config *conf, char *line, int print);
+int 	check_map(t_config *conf, t_map map);
+int     floodfill(t_config *conf, t_map map);
+void	print_map(t_map map);
 
 #endif

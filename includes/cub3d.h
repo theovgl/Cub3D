@@ -44,7 +44,9 @@ void	clear_buffer(t_config *c);
 
 int		keydown(int keysym, t_config *conf);
 int		keyup(int keysym, t_config *conf);
-void move_forward(t_config *c, t_player *p, t_map *m);
+void    move_forward(t_player *p, t_map *m);
+void    move_backward(t_player *p, t_map *m);
+void	rotate(t_player *p, int direction);
 
 int		error_handling(t_config *conf, int return_value, char *message);
 

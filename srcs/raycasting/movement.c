@@ -16,17 +16,48 @@ static int check_movement(t_map *m, int x, int y)
 {
 	if (x > m->map_width || y > m->map_height || x < 0 || y < 0)
 		return (0);
-	if (m->map[y][x] != 1)
+	if (m->map[y][x] != '1')
 	{
 		return (1);
 	}
 	return (0);
 }
 
-void move_forward(t_config *c, t_player *p, t_map *m)
+void move_forward(t_player *p, t_map *m)
 {
 	if (check_movement(m, (int)(p->x + p->dir_x * p->walk_speed), (int)p->y))
 		p->x += p->dir_x * p->walk_speed;
 	if (check_movement(m, (int)p->x, (int)(p->y + p->dir_y * p->walk_speed)))
 		p->y += p->dir_y * p->walk_speed;
+}
+
+void move_backward(t_player *p, t_map *m)
+{
+	if (check_movement(m, (int)(p->x - p->dir_x * p->walk_speed), (int)p->y))
+		p->x -= p->dir_x * p->walk_speed;
+	if (check_movement(m, (int)p->x, (int)(p->y - p->dir_y * p->walk_speed)))
+		p->y -= p->dir_y * p->walk_speed;
+}
+
+void	rotate(t_player *p, int direction)
+{
+	double	old_direction;
+	double	old_plane;
+
+	old_direction = p->dir_x;
+	old_plane = p->plane_x;
+	if (direction == 1)
+	{
+		p->dir_x = p->dir_x * cos(-p->rotation_speed) - p->dir_y * sin(-p->rotation_speed);
+		p->dir_y = old_direction * sin(-p->rotation_speed) + p->dir_y * cos(-p->rotation_speed);
+		p->plane_x = p->plane_x * cos(-p->rotation_speed) - p->plane_y * sin(-p->rotation_speed);
+		p->plane_y = old_plane * sin(-p->rotation_speed) + p->plane_y * cos(-p->rotation_speed);
+	}
+	else if (direction == 0)
+	{
+		p->dir_x = p->dir_x * cos(p->rotation_speed) - p->dir_y * sin(p->rotation_speed);
+		p->dir_y = old_direction * sin(p->rotation_speed) + p->dir_y * cos(p->rotation_speed);
+		p->plane_x = p->plane_x * cos(p->rotation_speed) - p->plane_y * sin(p->rotation_speed);
+		p->plane_y= old_plane * sin(p->rotation_speed) + p->plane_y * cos(p->rotation_speed);
+	}
 }

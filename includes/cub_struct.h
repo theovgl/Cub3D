@@ -44,8 +44,8 @@ typedef struct s_player
 	float	height;
 	int		turn_dir;
 	int		walk_dir;
-	float	rotation_ang;
-	float	walk_speed;
+	double	rotation_speed;
+	double	walk_speed;
 	float	turn_speed;
 	int		seen;
 	float	fov;

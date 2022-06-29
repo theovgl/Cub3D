@@ -28,7 +28,7 @@ static void	dda(t_config *c, t_player *p, t_ray *r)
 			r->map_y += r->step_y;
 			r->side = 1;
 		}
-		if (c->map.map[r->map_x][r->map_y] == '1')
+		if (c->map.map[r->map_y][r->map_x] == '1')
 			r->hit = 1;
 	}
 }
@@ -105,13 +105,6 @@ void	cast_rays(t_config *c, t_player *p)
 	int		id;
 
 	id = 0;
-
-	//provisoire
-	p->dir_x = -1;
-	p->dir_y = 0;
-	p->plane_x = 0;
-	p->plane_y = 0.66;
-
 	while (id < SCR_WIDTH)
 	{
 		// printf("%i\n", id);

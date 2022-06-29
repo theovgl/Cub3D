@@ -46,7 +46,7 @@ void	draw_player(t_config *conf, t_player *player)
 		player->x,
 		player->y
 	}, (t_point){
-		player->x + cos(player->rotation_ang) * 50,
-		player->y + sin(player->rotation_ang) * 50
+		player->x + cos(player->rotation_speed) * 50,
+		player->y + sin(player->rotation_speed) * 50
 	}, 0x02222FF);
 }

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:38:11 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/16 11:39:33 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/28 16:47:27 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	my_mlx_pixel_put(t_img img, int x, int y, int color)
 {
 	char	*dst;
 
+	// printf("%i, %i\n", x, y);
 	dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
 	*(unsigned int *)dst = color;
 }

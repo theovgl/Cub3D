@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:08:31 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/24 16:18:33 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/28 18:11:01 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	draw_walls(t_config *c, t_ray *ray)
 		j = c->rays[i].top;
 		while (j < c->rays[i].bottom)
 		{
-			my_mlx_pixel_put(c->colors_buf, j, i, 0x00EEEEEE);
+			// printf("%i, %i\n", c->rays[i].top, c->rays[i].bottom);
+			my_mlx_pixel_put(c->colors_buf, i, j, 0x00EEEEEE);
 			j++;
 		}
 		i++;

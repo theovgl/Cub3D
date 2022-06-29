@@ -6,22 +6,11 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:39:09 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/27 19:00:00 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/28 17:39:01 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
-
-// void	cast_single_ray(t_config *c, t_ray *ray)
-// {
-// 	ray->angle = normalize_angle(ray->angle);
-// 	check_orientation(ray, ray->angle);
-// 	check_horizontal(c, ray);
-// 	check_vertical(c, ray);
-// 	best_distance(c, ray);
-// }
 
 static void	dda(t_config *c, t_player *p, t_ray *r)
 {
@@ -39,9 +28,7 @@ static void	dda(t_config *c, t_player *p, t_ray *r)
 			r->map_y += r->step_y;
 			r->side = 1;
 		}
-		printf("%i, %i\n", r->map_x, r->map_y);
-		// printf("%c\n", c->map.map[11][0]);
-		if (c->map.map[r->map_y][r->map_x] == 1)
+		if (c->map.map[r->map_x][r->map_y] == '1')
 			r->hit = 1;
 	}
 }
@@ -49,6 +36,7 @@ static void	dda(t_config *c, t_player *p, t_ray *r)
 static void	get_wall_height(t_player *p, t_ray *r)
 {
 	int	line_height;
+
 	if (r->side == 0)
 		r->perp_wall_dist = r->sidedist_x - r->delta_x;
 	else
@@ -63,6 +51,8 @@ static void	get_wall_height(t_player *p, t_ray *r)
 	{
 		r->bottom = SCR_HEIGHT - 1;
 	}
+
+	// printf("%i, %i\n", r->top, r->bottom);
 
 }
 
@@ -122,8 +112,9 @@ void	cast_rays(t_config *c, t_player *p)
 	p->plane_x = 0;
 	p->plane_y = 0.66;
 
-	while (id < 1)
+	while (id < SCR_WIDTH)
 	{
+		// printf("%i\n", id);
 		init_ray(p, &c->rays[id], id);
 		init_sidedist(p, &c->rays[id]);
 		dda(c, p, &c->rays[id]);

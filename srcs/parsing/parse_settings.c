@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_settings.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:50:43 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/04 18:40:43 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/30 14:38:21 by arnaud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	save_texture(t_config *conf, char *line, t_textures *texture)
 	i = 2;
 	while (line[i] != '.' && line[i])
 	{
-		if (line[i] != ' ' && line[i] != '.')
+		if (!ft_isspace(line[i]) && line[i] != '.')
 			return (error_handling(conf, 1, "Wrong texture path"));
 		i++;
 	}
@@ -39,16 +39,21 @@ static int	save_texture(t_config *conf, char *line, t_textures *texture)
 
 static int	parse_textures(t_config *conf, char *line)
 {
+	int	i;
+
+	i = 0;
 	if (line[0] == '\n' || line[0] == '\0')
 		return (0);
-	if (ft_strncmp("NO", line, 2) == 0)
-		save_texture(conf, line, &conf->textures[0]);
-	else if (ft_strncmp("SO", line, 2) == 0)
-		save_texture(conf, line, &conf->textures[1]);
-	else if (ft_strncmp("WE", line, 2) == 0)
-		save_texture(conf, line, &conf->textures[2]);
-	else if (ft_strncmp("EA", line, 2) == 0)
-		save_texture(conf, line, &conf->textures[3]);
+	while (ft_isspace(line[i]))
+		i++;
+	if (ft_strncmp("NO", &line[i], 2) == 0)
+		save_texture(conf, &line[i], &conf->textures[0]);
+	else if (ft_strncmp("SO", &line[i], 2) == 0)
+		save_texture(conf, &line[i], &conf->textures[1]);
+	else if (ft_strncmp("WE", &line[i], 2) == 0)
+		save_texture(conf, &line[i], &conf->textures[2]);
+	else if (ft_strncmp("EA", &line[i], 2) == 0)
+		save_texture(conf, &line[i], &conf->textures[3]);
 	return (0);
 }
 

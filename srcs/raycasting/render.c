@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:05:27 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/16 15:15:02 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/28 16:14:52 by arnaud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,7 @@ static void	draw_rays(t_config *c)
 int	render(t_config *conf)
 {
 	update(conf);
-	// draw_map(conf);
-	// draw_rays(conf);
-	// draw_player(conf, &conf->player);
 	mlx_put_image_to_window(conf->graph.mlx, conf->graph.win,
 		conf->colors_buf.mlx_img, 0, 0);
-	// mlx_put_image_to_window(conf->graph.mlx, conf->graph.win,
-	// 	conf->graph.img.mlx_img, 0, 0);
 	return (0);
 }

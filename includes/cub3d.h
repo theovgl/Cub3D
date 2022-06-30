@@ -6,7 +6,7 @@
 /*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:02:08 by tvogel            #+#    #+#             */
-/*   Updated: 2022/03/30 15:36:13 by abiju-du         ###   ########.fr       */
+/*   Updated: 2022/06/27 19:35:46 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ struct s_list
 int		init(t_config *conf);
 
 int		open_windows(t_graph *graph);
-int		handle_input(int key, t_config *conf);
 int		my_mlx_loop_hook(void);
 int		close_window(t_graph *g);
 void	my_mlx_pixel_put(t_img img, int x, int y, int color);
@@ -55,7 +54,9 @@ void	clear_buffer(t_config *c);
 
 int		keydown(int keysym, t_config *conf);
 int		keyup(int keysym, t_config *conf);
-int		move_player(t_config *conf, t_player *p, t_map *m);
+void	move_forward(t_player *p, t_map *m);
+void	move_backward(t_player *p, t_map *m);
+void	rotate(t_player *p, int direction);
 
 int		error_handling(t_config *conf, int return_value, char *message);
 

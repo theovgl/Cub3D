@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:26:18 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/22 16:52:19 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/24 16:25:59 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,14 @@ static void	init_mlx(t_graph *g)
 
 static void	init_raycast(t_config *c, t_player *player)
 {
-	c->tile_size = 24;
-	player->turn_dir = 0;
-	player->walk_dir = 0;
-	player->walk_speed = 0.5;
-	player->rotation_ang = M_PI / 2;
-	player->turn_speed = 1.5 * (M_PI / 180);
-	player->width = c->tile_size / 2;
-	player->height = c->tile_size / 2;
-	player->fov = 60 * (M_PI / 180);
-	player->x *= c->tile_size;
-	player->y *= c->tile_size;
+	player->x += 0.5;
+	player->y += 0.5;
+	player->walk_speed = 0.05;
+	player->rotation_speed = 0.03;
+	player->dir_x = -1;
+	player->dir_y = 0;
+	player->plane_x = 0;
+	player->plane_y = 0.66;
 }
 
 int	init_colors_buffer(t_config *c)

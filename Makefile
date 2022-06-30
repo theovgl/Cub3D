@@ -5,7 +5,7 @@ SRCS		= main.c init.c\
 				settings_check.c parse_map.c save_map.c check_map.c floodfill.c \
 			draw_map.c draw_line.c render_rect.c \
 			start.c render.c mlx_tools.c input.c movement.c \
-				raycast.c raycast_utils.c check_intersection.c three_dimensions.c \
+				raycast.c three_dimensions.c \
 			ft_strlen.c ft_strncmp.c ft_isdigit.c ft_atoi.c ft_strdup.c ft_isspace.c ft_isprint.c \
 			ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c \
 			get_next_line.c get_next_line_utils.c

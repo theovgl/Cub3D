@@ -46,8 +46,8 @@ static int	check_player(t_config *c, char *line, int y)
 		if (line[i] == 'N' || line[i] == 'S'
 			|| line[i] == 'E' || line[i] == 'W')
 		{
-			c->player.x = i;
-			c->player.y = y;
+			c->player.x = y;
+			c->player.y = i;
 			c->player.seen++;
 			line[i] = '0';
 			return (0);

@@ -21,14 +21,16 @@ static void	dda(t_config *c, t_player *p, t_ray *r)
 			r->sidedist_x += r->delta_x;
 			r->map_x += r->step_x;
 			r->side = 0;
+			r->color = 0x00e6e6e6;
 		}
 		else
 		{
 			r->sidedist_y += r->delta_y;
 			r->map_y += r->step_y;
 			r->side = 1;
+			r->color = 0x009E9E9E;
 		}
-		if (c->map.map[r->map_y][r->map_x] == '1')
+		if (c->map.map[r->map_x][r->map_y] == '1')
 			r->hit = 1;
 	}
 }
@@ -41,7 +43,6 @@ static void	get_wall_height(t_player *p, t_ray *r)
 		r->perp_wall_dist = r->sidedist_x - r->delta_x;
 	else
 		r->perp_wall_dist = r->sidedist_y - r->delta_y;
-
 	line_height = (int)(SCR_HEIGHT / r->perp_wall_dist);
 	r->top = -line_height / 2 + SCR_HEIGHT / 2;
 	if (r->top < 0)
@@ -51,9 +52,6 @@ static void	get_wall_height(t_player *p, t_ray *r)
 	{
 		r->bottom = SCR_HEIGHT - 1;
 	}
-
-	// printf("%i, %i\n", r->top, r->bottom);
-
 }
 
 static void	init_sidedist(t_player *p, t_ray *r)
@@ -96,7 +94,6 @@ static void	init_ray(t_player *p, t_ray *r, int id)
 	else
 		r->delta_y = fabs(1 / r->rayDir_y);
 	r->hit = 0;
-
 	return ;
 }
 
@@ -107,7 +104,6 @@ void	cast_rays(t_config *c, t_player *p)
 	id = 0;
 	while (id < SCR_WIDTH)
 	{
-		// printf("%i\n", id);
 		init_ray(p, &c->rays[id], id);
 		init_sidedist(p, &c->rays[id]);
 		dda(c, p, &c->rays[id]);

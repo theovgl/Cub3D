@@ -23,8 +23,10 @@ void	draw_walls(t_config *c, t_ray *ray)
 		j = c->rays[i].top;
 		while (j < c->rays[i].bottom)
 		{
-			// printf("%i, %i\n", c->rays[i].top, c->rays[i].bottom);
-			my_mlx_pixel_put(c->colors_buf, i, j, 0x00EEEEEE);
+			if (c->rays[i].side == 0)
+				my_mlx_pixel_put(c->colors_buf, i, j, c->rays[i].color);
+			else
+				my_mlx_pixel_put(c->colors_buf, i, j, c->rays[i].color);
 			j++;
 		}
 		i++;

@@ -17,7 +17,6 @@
 
 typedef struct s_ray
 {
-	float	angle;
 	double	camera_x;
 	double	rayDir_x;
 	double	rayDir_y;
@@ -34,6 +33,7 @@ typedef struct s_ray
 	int		side;
 	int		top;
 	int		bottom;
+	int		color;
 }	t_ray;
 
 typedef struct s_player

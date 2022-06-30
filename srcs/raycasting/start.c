@@ -22,8 +22,10 @@ static void	init_mlx(t_graph *g)
 
 static void	init_raycast(t_config *c, t_player *player)
 {
+	player->x += 0.5;
+	player->y += 0.5;
 	player->walk_speed = 0.05;
-	player->rotation_speed = 0.02;
+	player->rotation_speed = 0.03;
 	player->dir_x = -1;
 	player->dir_y = 0;
 	player->plane_x = 0;

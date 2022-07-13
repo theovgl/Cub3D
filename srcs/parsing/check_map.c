@@ -6,7 +6,7 @@
 /*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 10:25:41 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/28 16:28:44 by arnaud           ###   ########.fr       */
+/*   Updated: 2022/07/13 12:45:34 by arnaud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static int	check_player(t_config *c, char *line, int y)
 		if (line[i] == 'N' || line[i] == 'S'
 			|| line[i] == 'E' || line[i] == 'W')
 		{
-			c->player.x = y;
-			c->player.y = i;
+			c->player.x = i;
+			c->player.y = y;
 			c->player.seen++;
 			c->map.map[y][i] = '0';
 			return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:26:18 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/15 15:39:28 by arnaud           ###   ########.fr       */
+/*   Updated: 2022/07/15 16:42:40 by abiju-du         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,40 +20,43 @@ static void	init_mlx(t_graph *g)
 			&g->img.line_len, &g->img.endian);
 }
 
-static void	init_raycast(t_config *c, t_player *player)
+static void	player_init_dir(t_player *player)
 {
-	player->x += 0.5;
-	player->y += 0.5;
-	player->walk_speed = 0.05;
-	player->rotation_speed = 0.03;
 	if (player->dir_init == 'E')
 	{
-		player->dir_x = 0;
 		player->dir_y = 1;
 		player->plane_x = -0.66 * sin(4.71);
 		player->plane_y = 0.66 * cos(4.71);
 	}
 	else if (player->dir_init == 'W')
 	{
-		player->dir_x = 0;
 		player->dir_y = -1;
 		player->plane_x = -0.66;
 		player->plane_y = 0;
 	}
-	else if(player->dir_init == 'N')
+	else if (player->dir_init == 'N')
 	{
 		player->dir_x = -1;
-		player->dir_y = 0;
 		player->plane_x = 0;
 		player->plane_y = 0.66;
 	}
-	else if(player->dir_init == 'S')
+	else if (player->dir_init == 'S')
 	{
 		player->dir_x = 1;
-		player->dir_y = 0;
 		player->plane_x = -0.66 * sin(3.14);
 		player->plane_y = 0.66 * cos(3.14);
 	}
+}
+
+static void	init_raycast(t_config *c, t_player *player)
+{
+	player->x += 0.5;
+	player->y += 0.5;
+	player->walk_speed = 0.05;
+	player->rotation_speed = 0.03;
+	player->dir_x = 0;
+	player->dir_y = 0;
+	player_init_dir(player);
 }
 
 int	init_colors_buffer(t_config *c)

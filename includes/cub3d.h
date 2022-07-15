@@ -6,7 +6,7 @@
 /*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:02:08 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/27 19:35:46 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/15 19:09:12 by abiju-du         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ void	clear_buffer(t_config *c);
 
 int		keydown(int keysym, t_config *conf);
 int		keyup(int keysym, t_config *conf);
-void	move_forward(t_player *p, t_map *m);
-void	move_backward(t_player *p, t_map *m);
+void	move_forward(t_player *p, t_map *m, int forward);
 void	rotate(t_player *p, int direction);
 
 int		error_handling(t_config *conf, int return_value, char *message);

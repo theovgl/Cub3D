@@ -6,6 +6,7 @@ SRCS		= main.c init.c\
 			draw_map.c draw_line.c render_rect.c \
 			start.c render.c mlx_tools.c input.c movement.c \
 				raycast.c three_dimensions.c \
+			textures.c	\
 			ft_strlen.c ft_strncmp.c ft_isdigit.c ft_atoi.c ft_strdup.c\
 			get_next_line.c get_next_line_utils.c
 OBJS		= $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
@@ -15,7 +16,7 @@ MLXDIR		= lib/minilibx-linux
 MLX			= $(MLXDIR)/libmlx.a
 LIBS		= -L$(MLXDIR) -lmlx -lXext -lX11 -lm
 CC			= clang
-CFLAGS		= -Wall -Wextra -g3 #-fsanitize=address
+CFLAGS		= -Wall -Wextra -g3 -fsanitize=address
 RM			= rm -f
 
 vpath %.c srcs/ srcs/errors/ srcs/parsing/ srcs/graphics/ srcs/raycasting srcs/utils srcs/utils/get_next_line

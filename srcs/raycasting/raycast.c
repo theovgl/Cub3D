@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:39:09 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/28 17:39:01 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/13 15:46:54 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,15 @@ static void	dda(t_config *c, t_player *p, t_ray *r)
 
 static void	get_wall_height(t_player *p, t_ray *r)
 {
-	int	line_height;
-
 	if (r->side == 0)
 		r->perp_wall_dist = r->sidedist_x - r->delta_x;
 	else
 		r->perp_wall_dist = r->sidedist_y - r->delta_y;
-	line_height = (int)(SCR_HEIGHT / r->perp_wall_dist);
-	r->top = -line_height / 2 + SCR_HEIGHT / 2;
+	r->line_height = (int)(SCR_HEIGHT / r->perp_wall_dist);
+	r->top = -r->line_height / 2 + SCR_HEIGHT / 2;
 	if (r->top < 0)
 		r->top = 0;
-	r->bottom = line_height / 2 + SCR_HEIGHT / 2;
+	r->bottom = r->line_height / 2 + SCR_HEIGHT / 2;
 	if (r->bottom >= SCR_HEIGHT)
 	{
 		r->bottom = SCR_HEIGHT - 1;
@@ -108,6 +106,7 @@ void	cast_rays(t_config *c, t_player *p)
 		init_sidedist(p, &c->rays[id]);
 		dda(c, p, &c->rays[id]);
 		get_wall_height(p, &c->rays[id]);
+		calculate_textures(c, &c->player, &c->rays[id], id);
 		id++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:53:03 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/23 18:49:05 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/13 14:49:33 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ typedef struct s_ray
 	int		top;
 	int		bottom;
 	int		color;
+	double	wall_x;
+	int		texture_x;
+	int		texture_y;
+	double	tex_pos;
+	double	tex_step;
+	int		line_height;
 }	t_ray;
 
 typedef struct s_player
@@ -64,11 +70,6 @@ typedef struct s_map
 	int		map_begin;
 }	t_map;
 
-typedef struct s_textures
-{
-	int		saved;
-	char	*path;
-}	t_textures;
 
 typedef struct s_colors
 {
@@ -88,6 +89,15 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_textures
+{
+	int		saved;
+	char	*path;
+	t_img	img;
+	int		width;
+	int		height;
+}	t_textures;
+
 typedef struct s_graph
 {
 	void	*mlx;
@@ -97,7 +107,6 @@ typedef struct s_graph
 
 typedef struct s_config
 {
-	int			tile_size;
 	int			map_fd;
 	int			error;
 	t_colors	floor;

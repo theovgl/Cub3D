@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:08:31 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/28 18:11:01 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/16 15:34:16 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,8 @@
 
 void	draw_walls(t_config *c, t_ray *ray)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < SCR_WIDTH)
-	{
-		j = c->rays[i].top;
-		while (j < c->rays[i].bottom)
-		{
-			if (c->rays[i].side == 0)
-				my_mlx_pixel_put(c->colors_buf, i, j, c->rays[i].color);
-			else
-				my_mlx_pixel_put(c->colors_buf, i, j, c->rays[i].color);
-			j++;
-		}
-		i++;
-	}
+	mlx_put_image_to_window(c->graph.mlx,
+		c->graph.win, c->colors_buf.mlx_img, 0, 0);
 }
 
 void	clear_buffer(t_config *c)

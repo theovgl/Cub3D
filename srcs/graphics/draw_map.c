@@ -21,7 +21,7 @@ void	draw_map(t_config *conf)
 
 	i = 0;
 	map = conf->map;
-	r = conf->tile_size;
+	// r = conf->tile_size;
 	while (map.map[i])
 	{
 		j = 0;

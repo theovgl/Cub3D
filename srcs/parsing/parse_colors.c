@@ -20,11 +20,11 @@ static int	encode_rgb(unsigned int red, unsigned int green, unsigned int blue)
 static int	check_color(t_config *c, unsigned int r,
 	unsigned int g, unsigned int b)
 {
-	if (r > 255 || r < 0)
+	if (r > 255)
 		return (error_handling(c, 1, "Wrong color format"));
-	if (g > 255 || g < 0)
+	if (g > 255)
 		return (error_handling(c, 1, "Wrong color format"));
-	if (b > 255 || b < 0)
+	if (b > 255)
 		return (error_handling(c, 1, "Wrong color format"));
 	return (0);
 }
@@ -33,7 +33,6 @@ static int	save_color(t_config *conf, t_colors *color, char *line)
 {
 	int	i;
 	int	value;
-	int	coma;
 
 	i = 1;
 	while (line[i])
@@ -70,14 +69,22 @@ int	parse_colors(t_config *conf, char *line)
 		if (save_color(conf, &conf->floor, &line[i]))
 			return (1);
 		else
+		{
 			conf->floor.seen = 1;
+			conf->floor.hex = encode_rgb(conf->floor.r,
+					conf->floor.g, conf->floor.b);
+		}
 	}
 	if (ft_strncmp("C", &line[i], 1) == 0)
 	{
 		if (save_color(conf, &conf->ceiling, &line[i]))
 			return (1);
 		else
+		{
 			conf->ceiling.seen = 1;
+			conf->ceiling.hex = encode_rgb(conf->ceiling.r,
+					conf->ceiling.g, conf->ceiling.b);
+		}
 	}
 	return (0);
 }

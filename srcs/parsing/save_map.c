@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:49:34 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/27 13:03:13 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/06/28 16:29:43 by arnaud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,13 @@ static int	save_line(t_map *map, char *line, int pos)
 	{
 		if (line[i] == '0' || line[i] == '1' || line[i] == 'N'
 			|| line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
-				map->map[pos][j] = line[i];
-		else if (line[i] == ' ')
-			map->map[pos][j] = '1';
-		else
-			map->map[pos][j] = '1';
+			map->map[pos][j] = line[i];
 		if (line[i])
 			i++;
 		j++;
 	}
+	if (pos == map->map_height && i > 0)
+		map->map_height++;
 	map->map[pos][j] = '\0';
 	return (0);
 }
@@ -46,7 +44,7 @@ int	save_map(t_config *conf)
 	i = 0;
 	j = 0;
 	conf->map_fd = open(conf->map.path, O_RDONLY);
-	conf->map.map = malloc(sizeof(char *) * (conf->map.map_height + 1));
+	conf->map.map = malloc(sizeof(char *) * (conf->map.map_height + 2));
 	if (!conf->map.map)
 		return (error_handling(conf, 1, "Malloc failed"));
 	while (get_next_line(conf->map_fd, &line))
@@ -56,7 +54,11 @@ int	save_map(t_config *conf)
 		i++;
 		free(line);
 	}
-	conf->map.map[j++] = NULL;
+	if (j == conf->map.map_height)
+	{
+		save_line(&conf->map, line, j++);
+	}
+	conf->map.map[j] = NULL;
 	free(line);
 	return (0);
 }

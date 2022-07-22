@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:05:27 by tvogel            #+#    #+#             */
 /*   Updated: 2022/07/15 18:00:52 by tvogel           ###   ########.fr       */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:42:10 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/24 15:54:27 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/15 19:07:38 by abiju-du         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ int	keydown(int keysym, t_config *conf)
 		printf("Escape\n");
 	}
 	if (keysym == XK_w || keysym == XK_z)
-		move_forward(&conf->player, &conf->map);
+		move_forward(&conf->player, &conf->map, 1);
 	if (keysym == XK_d)
-		shift(&conf->player, conf->map);
+		shift(&conf->player, &conf->map, 1);
+	if (keysym == XK_a)
+		shift(&conf->player, &conf->map, -1);
 	if (keysym == XK_s)
-		move_backward(&conf->player, &conf->map);
+		move_forward(&conf->player, &conf->map, -1);
 	if (keysym == XK_Right)
 		rotate(&conf->player, 1);
 	if (keysym == XK_Left)

@@ -12,30 +12,6 @@
 
 #include "cub3d.h"
 
-static int	check_wall(t_map map, char *line, int pos)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (pos == 0 || pos == (map.map_height - 1))
-		{
-			if (line[i] != '1')
-				return (1);
-		}
-		else
-		{
-			if (i == 0 && line[i] != '1')
-				return (1);
-			else if (i == (map.map_width - 1) && line[i] != '1')
-				return (1);
-		}
-		i++;
-	}
-	return (0);
-}
-
 static int	check_player(t_config *c, char *line, int y)
 {
 	int	i;

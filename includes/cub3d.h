@@ -12,8 +12,8 @@
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define SCR_WIDTH 480
-# define SCR_HEIGHT 250
+# define SCR_WIDTH 1280
+# define SCR_HEIGHT 720
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -33,8 +33,8 @@
 # include "graphics.h"
 # include "raycast.h"
 
-
 typedef struct s_list t_list;
+
 struct s_list
 {
     int x;
@@ -42,7 +42,6 @@ struct s_list
     t_list *next;
     t_list *prev;
 };
-
 
 int		init(t_config *conf);
 

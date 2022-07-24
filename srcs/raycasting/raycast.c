@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static void	dda(t_config *c, t_player *p, t_ray *r)
+static void	dda(t_config *c, t_ray *r)
 {
 	while (r->hit == 0)
 	{
@@ -30,12 +30,12 @@ static void	dda(t_config *c, t_player *p, t_ray *r)
 			r->side = 1;
 			r->color = 0x009E9E9E;
 		}
-		if (c->map.map[r->map_x][r->map_y] == '1')
+		if (c->map.map[r->map_y][r->map_x] == '1')
 			r->hit = 1;
 	}
 }
 
-static void	get_wall_height(t_player *p, t_ray *r)
+static void	get_wall_height(t_ray *r)
 {
 	if (r->side == 0)
 		r->perp_wall_dist = r->sidedist_x - r->delta_x;
@@ -104,8 +104,8 @@ void	cast_rays(t_config *c, t_player *p)
 	{
 		init_ray(p, &c->rays[id], id);
 		init_sidedist(p, &c->rays[id]);
-		dda(c, p, &c->rays[id]);
-		get_wall_height(p, &c->rays[id]);
+		dda(c, &c->rays[id]);
+		get_wall_height(&c->rays[id]);
 		calculate_textures(c, &c->player, &c->rays[id], id);
 		id++;
 	}

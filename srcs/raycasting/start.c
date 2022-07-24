@@ -48,7 +48,7 @@ static void	player_init_dir(t_player *player)
 	}
 }
 
-static void	init_raycast(t_config *c, t_player *player)
+static void	init_raycast(t_player *player)
 {
 	player->x += 0.5;
 	player->y += 0.5;
@@ -70,8 +70,8 @@ int	init_colors_buffer(t_config *c)
 int	start(t_config *conf, t_graph *g)
 {
 	init_mlx(g);
-	init_textures(conf);
-	init_raycast(conf, &conf->player);
+	load_textures(conf);
+	init_raycast(&conf->player);
 	init_colors_buffer(conf);
 	open_windows(g);
 	mlx_loop_hook(g->mlx, &render, conf);

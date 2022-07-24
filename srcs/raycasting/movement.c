@@ -14,7 +14,7 @@
 
 static int	check_movement(t_map *m, int x, int y)
 {
-	if (m->map[x][y] != '1')
+	if (m->map[y][x] != '1')
 		return (1);
 	return (0);
 }

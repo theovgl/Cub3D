@@ -42,6 +42,9 @@ void	render_rect(t_graph g, t_rect rect);
 
 void	draw_map(t_config *conf);
 void	draw_player(t_config *conf, t_player *player);
-void	draw_walls(t_config *c, t_ray *ray);
+void	draw_walls(t_config *c);
+
+void	load_textures(t_config *c);
+void	calculate_textures(t_config *c, t_player *p, t_ray *r, int x);
 
 #endif

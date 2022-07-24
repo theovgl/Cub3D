@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	draw_walls(t_config *c, t_ray *ray)
+void	draw_walls(t_config *c)
 {
 	mlx_put_image_to_window(c->graph.mlx,
 		c->graph.win, c->colors_buf.mlx_img, 0, 0);

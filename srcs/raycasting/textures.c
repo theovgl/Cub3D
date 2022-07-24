@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static int choose_texture(t_config *c, t_ray *r)
+static int choose_texture(t_ray *r)
 {
 	if (r->side == 0 && r->rayDir_x < 0)
 		return (0);
@@ -22,6 +22,7 @@ static int choose_texture(t_config *c, t_ray *r)
 		return (2);
 	else if (r->side == 1 && r->rayDir_y > 0)
 		return (3);
+	return (0);
 }
 
 static void	fill_buffer(t_config *c, t_ray *r, int x, int texture_id)
@@ -40,9 +41,9 @@ static void	fill_buffer(t_config *c, t_ray *r, int x, int texture_id)
 	{
 		r->texture_y = (int)r->tex_pos;
 		r->tex_pos += r->tex_step;
-		int_ptr = texture + (c->textures[texture_id].img.line_len 
+		int_ptr = (int *)(texture + (c->textures[texture_id].img.line_len 
 				* r->texture_y
-				+ r->texture_x * 4);
+				+ r->texture_x * 4));
 		color = *int_ptr;
 		my_mlx_pixel_put(c->colors_buf, x, y, color);
 		y++;
@@ -53,7 +54,7 @@ void	calculate_textures(t_config *c, t_player *p, t_ray *r, int x)
 {
 	int	current_tex;
 
-	current_tex = choose_texture(c, r);
+	current_tex = choose_texture(r);
 	if (r->side == 0)
 		r->wall_x = p->y + r->perp_wall_dist * r->rayDir_y;
 	else
@@ -69,7 +70,7 @@ void	calculate_textures(t_config *c, t_player *p, t_ray *r, int x)
 	fill_buffer(c, r, x, current_tex);
 }
 
-void	init_textures(t_config *c)
+void	load_textures(t_config *c)
 {
 	t_textures	*current;
 	int			i;

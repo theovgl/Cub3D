@@ -6,22 +6,22 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:44:52 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/27 15:55:48 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/27 16:28:00 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    free_map(t_map *map)
+void	free_map(t_map *map)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	while (map->map[y])
 		free(map->map[y++]);
 	if (map->map)
 		free(map->map);
-	if (map->path)	
+	if (map->path)
 		free(map->path);
 }
 
@@ -38,7 +38,7 @@ void	free_textures(t_config *c)
 	}
 }
 
-void    free_all(t_config *c)
+void	free_all(t_config *c)
 {
 	free_map(&c->map);
 	free_textures(c);

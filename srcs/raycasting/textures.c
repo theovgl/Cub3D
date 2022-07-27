@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:35:45 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/27 10:57:26 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/27 13:57:35 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	fill_buffer(t_config *c, t_ray *r, int x, int texture_id)
 			&c->textures[texture_id].img.bpp,
 			&c->textures[texture_id].img.line_len,
 			&c->textures[texture_id].img.endian);
-	while (y < r->bottom)
+	while (y <= r->bottom)
 	{
 		r->texture_y = (int)r->tex_pos;
 		r->tex_pos += r->tex_step;

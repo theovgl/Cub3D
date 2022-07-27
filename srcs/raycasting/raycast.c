@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:39:09 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/27 10:56:33 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/27 13:55:54 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,12 @@ static void	dda(t_config *c, t_ray *r)
 			r->sidedist_x += r->delta_x;
 			r->map_x += r->step_x;
 			r->side = 0;
-			r->color = 0x00e6e6e6;
 		}
 		else
 		{
 			r->sidedist_y += r->delta_y;
 			r->map_y += r->step_y;
 			r->side = 1;
-			r->color = 0x009E9E9E;
 		}
 		if (c->map.map[r->map_y][r->map_x] == '1')
 			r->hit = 1;

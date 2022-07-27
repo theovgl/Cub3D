@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:26:18 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/15 16:42:40 by abiju-du         ###   ########.fr       */
+/*   Updated: 2022/07/27 16:20:52 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ static void	init_raycast(t_player *player)
 {
 	player->x += 0.5;
 	player->y += 0.5;
-	player->walk_speed = 0.05;
-	player->rotation_speed = 0.03;
 	player->dir_x = 0;
 	player->dir_y = 0;
 	player_init_dir(player);

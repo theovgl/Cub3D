@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_struct.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:53:03 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/15 15:25:00 by arnaud           ###   ########.fr       */
+/*   Updated: 2022/07/27 10:56:33 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 typedef struct s_ray
 {
 	double	camera_x;
-	double	rayDir_x;
-	double	rayDir_y;
+	double	raydir_x;
+	double	raydir_y;
 	int		map_x;
 	int		map_y;
 	double	sidedist_x;
@@ -70,7 +70,6 @@ typedef struct s_map
 	char	**map;
 	int		map_begin;
 }	t_map;
-
 
 typedef struct s_colors
 {

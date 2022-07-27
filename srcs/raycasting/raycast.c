@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:39:09 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/13 15:46:54 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/27 10:56:33 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	get_wall_height(t_ray *r)
 
 static void	init_sidedist(t_player *p, t_ray *r)
 {
-	if (r->rayDir_x < 0)
+	if (r->raydir_x < 0)
 	{
 		r->step_x = -1;
 		r->sidedist_x = (p->x - r->map_x) * r->delta_x;
@@ -64,7 +64,7 @@ static void	init_sidedist(t_player *p, t_ray *r)
 		r->step_x = 1;
 		r->sidedist_x = (r->map_x + 1.0 - p->x) * r->delta_x;
 	}
-	if (r->rayDir_y < 0)
+	if (r->raydir_y < 0)
 	{
 		r->step_y = -1;
 		r->sidedist_y = (p->y - r->map_y) * r->delta_y;
@@ -79,18 +79,18 @@ static void	init_sidedist(t_player *p, t_ray *r)
 static void	init_ray(t_player *p, t_ray *r, int id)
 {
 	r->camera_x = 2 * id / (double)SCR_WIDTH - 1;
-	r->rayDir_x = p->dir_x + p->plane_x * r->camera_x;
-	r->rayDir_y = p->dir_y + p->plane_y * r->camera_x;
+	r->raydir_x = p->dir_x + p->plane_x * r->camera_x;
+	r->raydir_y = p->dir_y + p->plane_y * r->camera_x;
 	r->map_x = (int)p->x;
 	r->map_y = (int)p->y;
-	if (r->rayDir_x == 0)
+	if (r->raydir_x == 0)
 		r->delta_x = (double)INT_MAX;
 	else
-		r->delta_x = fabs(1 / r->rayDir_x);
-	if (r->rayDir_y == 0)
+		r->delta_x = fabs(1 / r->raydir_x);
+	if (r->raydir_y == 0)
 		r->delta_y = (double)INT_MAX;
 	else
-		r->delta_y = fabs(1 / r->rayDir_y);
+		r->delta_y = fabs(1 / r->raydir_y);
 	r->hit = 0;
 	return ;
 }

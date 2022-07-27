@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:02:08 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/15 19:09:12 by abiju-du         ###   ########.fr       */
+/*   Updated: 2022/07/27 10:51:24 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@
 # include "graphics.h"
 # include "raycast.h"
 
-typedef struct s_list t_list;
+typedef struct s_list	t_list;
 
 struct s_list
 {
-    int x;
-    int y;
-    t_list *next;
-    t_list *prev;
+	int		x;
+	int		y;
+	t_list	*next;
+	t_list	*prev;
 };
 
 int		init(t_config *conf);
@@ -73,7 +73,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void*));
 t_list	*ft_lstnew(int x, int y);
-int	    ft_lstsize(t_list *lst);
+int		ft_lstsize(t_list *lst);
 int		ft_isprint(int c);
 
 #endif

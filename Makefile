@@ -9,7 +9,8 @@ SRCS		= main.c init.c\
 			textures.c	\
 			ft_strlen.c ft_strncmp.c ft_isdigit.c ft_atoi.c ft_strdup.c ft_isspace.c ft_isprint.c \
 			ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c \
-			get_next_line.c get_next_line_utils.c
+			get_next_line.c get_next_line_utils.c \
+			free.c
 OBJS		= $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
 OBJSDIR		= objs
 INCL		= -I includes -I lib/minilibx-linux
@@ -17,7 +18,7 @@ MLXDIR		= lib/minilibx-linux
 MLX			= $(MLXDIR)/libmlx.a
 LIBS		= -L$(MLXDIR) -lmlx -lXext -lX11 -lm
 CC			= gcc
-CFLAGS		= -Wall -Wextra -g3 -o3 #-fsanitize=address
+CFLAGS		= -Wall -Wextra -g3 -o3 -fsanitize=address
 RM			= rm -f
 
 vpath %.c srcs/ srcs/errors/ srcs/parsing/ srcs/graphics/ srcs/raycasting srcs/utils srcs/utils/get_next_line

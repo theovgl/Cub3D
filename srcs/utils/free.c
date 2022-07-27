@@ -1,28 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 17:55:30 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/27 15:49:59 by tvogel           ###   ########.fr       */
+/*   Created: 2022/07/27 15:44:52 by tvogel            #+#    #+#             */
+/*   Updated: 2022/07/27 15:55:48 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char const *argv[])
+void    free_map(t_map *map)
 {
-	t_config	conf;
+	int y;
 
-	if (argc != 2)
-		return (error_handling(&conf, 1, "Illegal number of arguments"));
-	init(&conf);
-	if (parsing(&conf, argv) == 1)
-		return (1);
-	if (start(&conf, &conf.graph))
-		return (1);
-	free_all(&conf);
-	return (0);
+	y = 0;
+	while (map->map[y])
+		free(map->map[y++]);
+	if (map->map)
+		free(map->map);
+	if (map->path)	
+		free(map->path);
+}
+
+void	free_textures(t_config *c)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (c->textures[i].path)
+			free(c->textures[i].path);
+		i++;
+	}
+}
+
+void    free_all(t_config *c)
+{
+	free_map(&c->map);
+	free_textures(c);
 }

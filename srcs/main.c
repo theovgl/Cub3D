@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:55:30 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/27 15:49:59 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/28 14:19:15 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	main(int argc, char const *argv[])
 	init(&conf);
 	if (parsing(&conf, argv) == 1)
 		return (1);
-	if (start(&conf, &conf.graph))
-		return (1);
+	start(&conf, &conf.graph);
 	free_all(&conf);
 	return (0);
 }

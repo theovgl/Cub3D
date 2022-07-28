@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:44:52 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/27 16:28:00 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/28 14:26:23 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,6 @@ void	free_all(t_config *c)
 {
 	free_map(&c->map);
 	free_textures(c);
+	if (c->graph.img.mlx_img)
+		free(c->graph.mlx);
 }

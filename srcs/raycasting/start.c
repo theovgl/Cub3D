@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:26:18 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/27 16:20:52 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/28 14:21:51 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int	init_colors_buffer(t_config *c)
 int	start(t_config *conf, t_graph *g)
 {
 	init_mlx(g);
-	load_textures(conf);
+	if (load_textures(conf))
+		return (1);
 	init_raycast(&conf->player);
 	init_colors_buffer(conf);
 	open_windows(g);

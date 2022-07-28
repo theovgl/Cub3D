@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:35:45 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/27 13:57:35 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/28 14:33:48 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	calculate_textures(t_config *c, t_player *p, t_ray *r, int x)
 	fill_buffer(c, r, x, current_tex);
 }
 
-void	load_textures(t_config *c)
+int	load_textures(t_config *c)
 {
 	t_textures	*current;
 	int			i;
@@ -81,7 +81,9 @@ void	load_textures(t_config *c)
 		current = &c->textures[i];
 		current->img.mlx_img = mlx_xpm_file_to_image(c->graph.mlx,
 				current->path, &current->width, &current->height);
-		printf("%s %i %i\n", current->path, current->width, current->height);
+		if (current->img.mlx_img == NULL)
+			return(error_handling(c, 1, "An error occured while opening a texture"));
 		i++;
 	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:38:45 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/24 16:18:39 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/28 14:12:19 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	draw_map(t_config *conf);
 void	draw_player(t_config *conf, t_player *player);
 void	draw_walls(t_config *c);
 
-void	load_textures(t_config *c);
+int		load_textures(t_config *c);
 void	calculate_textures(t_config *c, t_player *p, t_ray *r, int x);
 
 #endif

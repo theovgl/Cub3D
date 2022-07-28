@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 17:12:22 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/28 14:14:50 by arnaud           ###   ########.fr       */
+/*   Updated: 2022/07/28 11:22:58 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,34 @@
 
 void	print_map(t_map map)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (map.map[i])
+	y = 0;
+	while (map.map[y])
 	{
-		j = 0;
-		while (map.map[i][j])
+		x = 0;
+		while (map.map[y][x])
 		{
-			if (map.map[i][j] == '1')
-				printf("\033[0;31m%c", map.map[i][j]);
-			else if (map.map[i][j] == '0' || map.map[i][j] == 'x')
-				printf("\033[0;37m%c", map.map[i][j]);
-			else if (map.map[i][j] == 'N' || map.map[i][j] == 'E'
-				|| map.map[i][j] == 'W' || map.map[i][j] == 'S')
-				printf("\033[1;33m%c", map.map[i][j]);
-			else if (map.map[i][j] == '\t')
-				printf("    ");
-			else
-				printf(" ");
-			j++;
+			if (map.map[y][x] == '1')
+				printf("\033[0;31m%c", map.map[y][x]);
+			else if (map.map[y][x] == '0' || map.map[y][x] == 'x')
+				printf("\033[0;37m%c", map.map[y][x]);
+			else if (map.map[y][x] == 'N' || map.map[y][x] == 'E'
+				|| map.map[y][x] == 'W' || map.map[y][x] == 'S')
+				printf("\033[1;33m%c", map.map[y][x]);
+			else if (map.map[y][x] == '\t' || map.map[y][x] == ' ')
+				printf("%c", map.map[y][x]);
+			x++;
 		}
 		printf("\033[0m\n");
-		i++;
+		y++;
 	}
 }
 
 void	print_player(t_config *conf)
 {
-	printf("\nPlayer X: %f, Player Y: %f\n", conf->player.x, conf->player.y);
+	printf("Player X: %f, Player Y: %f\n", conf->player.x, conf->player.y);
 }
 
 int	parsing(t_config *conf, const char *av[])

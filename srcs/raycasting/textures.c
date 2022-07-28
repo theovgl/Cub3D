@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:35:45 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/28 14:33:48 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/28 14:37:10 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int	load_textures(t_config *c)
 		current->img.mlx_img = mlx_xpm_file_to_image(c->graph.mlx,
 				current->path, &current->width, &current->height);
 		if (current->img.mlx_img == NULL)
-			return(error_handling(c, 1, "An error occured while opening a texture"));
+			return (error_handling(c, 1,
+					"An error occured while opening a texture"));
 		i++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:53:03 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/27 10:56:33 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/31 19:52:55 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ typedef struct s_player
 	float	y;
 	float	width;
 	float	height;
-	int		turn_dir;
-	int		walk_dir;
 	double	rotation_speed;
 	double	walk_speed;
-	float	turn_speed;
+	double	strafe_speed;
 	int		seen;
 	float	fov;
 	double	dir_x;
 	double	dir_y;
+	int		right;
+	int		left;
 	double	plane_x;
 	double	plane_y;
 	char	dir_init;

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:39:09 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/27 13:55:54 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/28 11:23:34 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ static void	get_wall_height(t_ray *r)
 		r->top = 0;
 	r->bottom = r->line_height / 2 + SCR_HEIGHT / 2;
 	if (r->bottom >= SCR_HEIGHT)
-	{
 		r->bottom = SCR_HEIGHT - 1;
-	}
 }
 
 static void	init_sidedist(t_player *p, t_ray *r)

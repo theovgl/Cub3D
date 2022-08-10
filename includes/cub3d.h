@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:02:08 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/27 16:16:56 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/28 14:42:06 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	move_forward(t_player *p, t_map *m);
 void	rotate(t_player *p);
 
 int		error_handling(t_config *conf, int return_value, char *message);
+void	free_all(t_config *c);
 
 // utils
 size_t	ft_strlen(const char *src);

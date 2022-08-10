@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:05:27 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/27 16:20:03 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/10 15:46:59 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	move(t_config *conf)
 {
+	shift(&conf->player, &conf->map, conf->player.right);
 	move_forward(&conf->player, &conf->map);
 	rotate(&conf->player);
 }

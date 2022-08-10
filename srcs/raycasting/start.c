@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:26:18 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/28 14:21:51 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/10 14:39:02 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,5 @@ int	start(t_config *conf, t_graph *g)
 	mlx_loop(g->mlx);
 	mlx_destroy_window(g->mlx, g->win);
 	mlx_destroy_display(g->mlx);
-	free(g->mlx);
 	return (0);
 }

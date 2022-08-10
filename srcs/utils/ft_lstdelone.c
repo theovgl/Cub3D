@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:25:32 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/11 12:13:00 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/28 11:03:24 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	if (lst != NULL && del != NULL)
 	{
-		del(lst->x);
-		del(lst->y);
+		del(lst);
 		free(lst);
 	}
 }

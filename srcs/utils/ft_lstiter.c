@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 19:27:47 by tvogel            #+#    #+#             */
-/*   Updated: 2022/02/11 12:14:08 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/28 11:03:29 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 	{
 		while (lst != NULL)
 		{
-			f(lst->x);
-			f(lst->y);
+			f(lst);
 			lst = lst->next;
 		}
 	}

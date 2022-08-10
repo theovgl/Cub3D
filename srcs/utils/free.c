@@ -6,13 +6,13 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:44:52 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/28 14:26:23 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/28 14:46:35 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_map(t_map *map)
+static void	free_map(t_map *map)
 {
 	int	y;
 
@@ -25,7 +25,7 @@ void	free_map(t_map *map)
 		free(map->path);
 }
 
-void	free_textures(t_config *c)
+static void	free_textures(t_config *c)
 {
 	int	i;
 
@@ -42,6 +42,6 @@ void	free_all(t_config *c)
 {
 	free_map(&c->map);
 	free_textures(c);
-	if (c->graph.img.mlx_img)
+	if (c->graph.mlx != NULL)
 		free(c->graph.mlx);
 }

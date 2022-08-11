@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:42:10 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/31 20:13:27 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/11 12:23:59 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,9 @@ int	keydown(int keysym, t_config *conf)
 	if (keysym == XK_s)
 		conf->player.walk_speed = -0.08;
 	if (keysym == XK_d)
-	{
-		// shift(&conf->player, &conf->map, 1);
 		conf->player.strafe_speed = 0.08;
-		conf->player.right = 1;
-	}
 	if (keysym == XK_a)
-	{
-		conf->player.left = 1;
 		conf->player.strafe_speed = -0.08;
-
-	}
 	if (keysym == XK_Right)
 		conf->player.rotation_speed = 0.05;
 	if (keysym == XK_Left)

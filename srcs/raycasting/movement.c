@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 15:30:22 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/31 19:58:15 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/11 12:23:05 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	move_forward(t_player *p, t_map *m)
 		p->y += p->dir_y * p->walk_speed;
 }
 
-void	shift(t_player *p, t_map *m, int right)
+void	shift(t_player *p, t_map *m)
 {
 	if (check_movement(m, (int)(p->x + p->plane_x
-			* (p->strafe_speed + (right * 0.5))), (int)p->y))
-		p->x += p->plane_x * p->strafe_speed * right;
+			* (p->strafe_speed)), (int)p->y))
+		p->x += p->plane_x * p->strafe_speed;
 	if (check_movement(m, (int)p->x, (int)(p->y + p->plane_y
-			* (p->strafe_speed + (right * 0.5)))))
-		p->y += p->plane_y * p->strafe_speed * right;
+			* (p->strafe_speed))))
+		p->y += p->plane_y * p->strafe_speed;
 }
 
 void	rotate(t_player *p)

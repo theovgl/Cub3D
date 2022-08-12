@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:50:05 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/30 15:37:59 by arnaud           ###   ########.fr       */
+/*   Updated: 2022/08/12 18:39:27 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	parse_map(t_config *conf)
 	char	*line;
 
 	line = NULL;
-	while (get_next_line(conf->map_fd, &line))
+	while (get_next_line(conf->map_fd, &line, 0))
 	{
 		count_map(conf, line);
 		free(line);

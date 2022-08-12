@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:49:34 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/27 11:40:32 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/12 18:39:30 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	save_map(t_config *conf)
 	conf->map.map = malloc(sizeof(char *) * (conf->map.map_height + 2));
 	if (!conf->map.map)
 		return (error_handling(conf, 1, "Malloc failed"));
-	while (get_next_line(conf->map_fd, &line))
+	while (get_next_line(conf->map_fd, &line, 0))
 	{
 		if (is_map(conf, line, 0) == 0 && i > conf->map.map_begin)
 			save_line(&conf->map, line, j++);

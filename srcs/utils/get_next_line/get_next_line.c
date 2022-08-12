@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:08:15 by tvogel            #+#    #+#             */
-/*   Updated: 2021/05/20 13:50:18 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/12 18:42:09 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,17 @@ char	*next_line(char *s)
 	return (dest);
 }
 
-int	get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line, int should_free)
 {
 	char			buff[BUFFER_SIZE + 1];
 	static char		*nl;
 	int				ret;
 
+	if (should_free)
+	{
+		free(nl);
+		return (0);
+	}
 	if (fd < 0 || !line || BUFFER_SIZE < 1)
 		return (-1);
 	ret = 1;

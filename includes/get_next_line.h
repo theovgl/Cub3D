@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:08:25 by tvogel            #+#    #+#             */
-/*   Updated: 2021/12/22 18:32:36 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/12 18:38:49 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-int		get_next_line(int fd, char **line);
+int		get_next_line(int fd, char **line, int should_free);
 int		isendline(char *src);
 char	*ft_join(char *s1, char *s2);
 

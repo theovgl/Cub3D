@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:50:43 by tvogel            #+#    #+#             */
-/*   Updated: 2022/08/12 17:44:58 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/12 18:41:22 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,19 @@ int	parse_settings(t_config *conf)
 
 	line = NULL;
 	conf->map.map_begin = 0;
-	while (get_next_line(conf->map_fd, &line)
+	while (get_next_line(conf->map_fd, &line, 0)
 		&& settings_checker(conf) == 1)
 	{
 		parse_textures(conf, line);
 		parse_colors(conf, line);
 		free(line);
 		conf->map.map_begin++;
+		if (conf->error)
+		{
+			get_next_line(0, NULL, 1);
+			line = NULL;
+			break ;
+		}
 	}
 	free(line);
 	if (settings_checker(conf) == 1)

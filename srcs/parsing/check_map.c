@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 10:25:41 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/15 15:50:16 by arnaud           ###   ########.fr       */
+/*   Updated: 2022/08/12 17:58:18 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int	check_map(t_config *conf, t_map map)
 
 	i = 0;
 	conf->player.seen = 0;
+	if (map.map_width < 2 || map.map_height < 2)
+	{
+		return (error_handling(conf, 1, "Missing map or wrong map format"));
+	}
 	while (map.map[i])
 	{
 		if (check_player(conf, map.map[i], i) == 1)

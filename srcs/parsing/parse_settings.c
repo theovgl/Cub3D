@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_settings.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:50:43 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/30 14:38:21 by arnaud           ###   ########.fr       */
+/*   Updated: 2022/08/12 17:44:58 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	parse_settings(t_config *conf)
 
 	line = NULL;
 	conf->map.map_begin = 0;
-	while (get_next_line(conf->map_fd, &line) && !conf->error
+	while (get_next_line(conf->map_fd, &line)
 		&& settings_checker(conf) == 1)
 	{
 		parse_textures(conf, line);
@@ -73,7 +73,10 @@ int	parse_settings(t_config *conf)
 	}
 	free(line);
 	if (settings_checker(conf) == 1)
+	{
+		close(conf->map_fd);
 		return (error_handling(conf, 1, "Missing settings in .cub file"));
+	}
 	parse_map(conf);
 	close(conf->map_fd);
 	if (conf->error == 1)

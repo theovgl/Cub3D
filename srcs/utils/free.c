@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:44:52 by tvogel            #+#    #+#             */
-/*   Updated: 2022/08/12 11:29:59 by abiju-du         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:17:03 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	free_map(t_map *map)
 	int	y;
 
 	y = 0;
-	while (map->map[y])
+	while (map->map && map->map[y])
 		free(map->map[y++]);
 	if (map->map)
 		free(map->map);

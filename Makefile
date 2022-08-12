@@ -20,7 +20,7 @@ CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
 
-vpath %.c srcs/ srcs/errors/ srcs/parsing/ srcs/graphics/ srcs/raycasting srcs/utils srcs/utils/get_next_line
+vpath %.c srcs/ srcs/errors/ srcs/parsing/ srcs/raycasting srcs/utils srcs/utils/get_next_line
 
 $(OBJSDIR)/%.o:		%.c
 			$(CC) $(CFLAGS) $(INCL) -c $< -o $@

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:44:52 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/28 14:46:35 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/12 11:29:59 by abiju-du         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,14 @@ static void	free_textures(t_config *c)
 	while (i < 4)
 	{
 		if (c->textures[i].path)
+		{
 			free(c->textures[i].path);
+			if (c->textures[i].img.mlx_img != NULL)
+			{
+				mlx_destroy_image(c->graph.mlx, c->textures[i].img.mlx_img);
+				c->textures[i].img.mlx_img = NULL;
+			}
+		}
 		i++;
 	}
 }
@@ -42,6 +49,25 @@ void	free_all(t_config *c)
 {
 	free_map(&c->map);
 	free_textures(c);
+	if (c->colors_buf.mlx_img != NULL)
+	{
+		mlx_destroy_image(c->graph.mlx, c->colors_buf.mlx_img);
+		c->colors_buf.mlx_img = NULL;
+	}
+	if (c->graph.img.mlx_img != NULL)
+	{
+		mlx_destroy_image(c->graph.mlx, c->graph.img.mlx_img);
+		c->graph.img.mlx_img = NULL;
+	}
+	if (c->graph.win != NULL)
+	{
+		mlx_destroy_window(c->graph.mlx, c->graph.win);
+		c->graph.win = NULL;
+	}
 	if (c->graph.mlx != NULL)
+	{
+		mlx_destroy_display(c->graph.mlx);
 		free(c->graph.mlx);
+		c->graph.mlx = NULL;
+	}
 }

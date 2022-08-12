@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:39:09 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/28 11:23:34 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/12 13:20:35 by abiju-du         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ static void	init_sidedist(t_player *p, t_ray *r)
 static void	init_ray(t_player *p, t_ray *r, int id)
 {
 	r->camera_x = 2 * id / (double)SCR_WIDTH - 1;
-	r->raydir_x = p->dir_x + p->plane_x * r->camera_x;
-	r->raydir_y = p->dir_y + p->plane_y * r->camera_x;
+	r->raydir_x = p->dir_x - p->plane_x * r->camera_x;
+	r->raydir_y = p->dir_y - p->plane_y * r->camera_x;
 	r->map_x = (int)p->x;
 	r->map_y = (int)p->y;
 	if (r->raydir_x == 0)

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:04:20 by tvogel            #+#    #+#             */
-/*   Updated: 2022/01/04 16:44:54 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/12 18:23:37 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_file(t_config *conf, const char *file_path)
 	i = size - 4;
 	if (check_extension(conf, (char *)file_path, ".cub", i))
 		return (1);
-	fd = open(file_path, O_RDONLY);
+	fd = open(file_path, O_RDWR);
 	if (fd == -1)
 	{
 		perror(file_path);

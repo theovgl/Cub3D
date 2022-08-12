@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:49:34 by tvogel            #+#    #+#             */
-/*   Updated: 2022/08/12 18:39:30 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/12 18:50:19 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	save_map(t_config *conf)
 		save_line(&conf->map, line, j++);
 	}
 	conf->map.map[j] = NULL;
+	close(conf->map_fd);
 	free(line);
 	return (0);
 }

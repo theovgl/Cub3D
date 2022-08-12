@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:42:10 by tvogel            #+#    #+#             */
-/*   Updated: 2022/08/11 12:23:59 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/12 19:03:29 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 int	keydown(int keysym, t_config *conf)
 {
 	if (keysym == XK_Escape)
-	{
 		close_window(&conf->graph);
-		printf("Escape\n");
-	}
 	if (keysym == XK_w || keysym == XK_z)
 		conf->player.walk_speed = 0.08;
 	if (keysym == XK_s)

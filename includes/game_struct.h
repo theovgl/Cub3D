@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_struct.h                                       :+:      :+:    :+:   */
+/*   game_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:53:03 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/31 19:52:55 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/12 14:22:34 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_STRUCT_H
-# define CUB_STRUCT_H
+#ifndef GAME_STRUCT_H
+# define GAME_STRUCT_H
 
 # include "cub3d.h"
 
@@ -33,7 +33,6 @@ typedef struct s_ray
 	int		side;
 	int		top;
 	int		bottom;
-	int		color;
 	double	wall_x;
 	int		texture_x;
 	int		texture_y;
@@ -46,13 +45,10 @@ typedef struct s_player
 {
 	float	x;
 	float	y;
-	float	width;
-	float	height;
 	double	rotation_speed;
 	double	walk_speed;
 	double	strafe_speed;
 	int		seen;
-	float	fov;
 	double	dir_x;
 	double	dir_y;
 	int		right;

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:02:08 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/28 14:42:06 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/12 14:17:52 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@
 # include <mlx.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
-# include "cub_struct.h"
+# include "game_struct.h"
 # include "get_next_line.h"
 # include "parsing.h"
-# include "graphics.h"
 # include "raycast.h"
 
 typedef struct s_list	t_list;

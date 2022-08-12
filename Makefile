@@ -3,7 +3,6 @@ SRCS		= main.c init.c\
 			error_handling.c \
 			parsing.c file_check.c parse_settings.c parse_colors.c \
 				settings_check.c parse_map.c save_map.c check_map.c floodfill.c \
-			draw_map.c draw_line.c render_rect.c \
 			start.c render.c mlx_tools.c input.c movement.c \
 				raycast.c three_dimensions.c \
 			textures.c	\

@@ -59,8 +59,6 @@ int	error_found(t_map map, t_list *q)
 
 int	floodfill(t_config *conf, t_map m)
 {
-	int		i;
-	int		j;
 	t_list	*q;
 	t_map	map;
 

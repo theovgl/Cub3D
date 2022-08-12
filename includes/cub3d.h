@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:02:08 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/15 19:09:12 by abiju-du         ###   ########.fr       */
+/*   Updated: 2022/08/12 14:17:52 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define SCR_WIDTH 480
-# define SCR_HEIGHT 250
+# define SCR_WIDTH 1280
+# define SCR_HEIGHT 720
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -27,22 +27,20 @@
 # include <mlx.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
-# include "cub_struct.h"
+# include "game_struct.h"
 # include "get_next_line.h"
 # include "parsing.h"
-# include "graphics.h"
 # include "raycast.h"
 
+typedef struct s_list	t_list;
 
-typedef struct s_list t_list;
 struct s_list
 {
-    int x;
-    int y;
-    t_list *next;
-    t_list *prev;
+	int		x;
+	int		y;
+	t_list	*next;
+	t_list	*prev;
 };
-
 
 int		init(t_config *conf);
 
@@ -54,10 +52,11 @@ void	clear_buffer(t_config *c);
 
 int		keydown(int keysym, t_config *conf);
 int		keyup(int keysym, t_config *conf);
-void	move_forward(t_player *p, t_map *m, int forward);
-void	rotate(t_player *p, int direction);
+void	move_forward(t_player *p, t_map *m);
+void	rotate(t_player *p);
 
 int		error_handling(t_config *conf, int return_value, char *message);
+void	free_all(t_config *c);
 
 // utils
 size_t	ft_strlen(const char *src);
@@ -74,7 +73,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void*));
 t_list	*ft_lstnew(int x, int y);
-int	    ft_lstsize(t_list *lst);
+int		ft_lstsize(t_list *lst);
 int		ft_isprint(int c);
 
 #endif

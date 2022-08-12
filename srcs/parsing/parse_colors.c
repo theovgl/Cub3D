@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 19:00:36 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/30 14:40:23 by arnaud           ###   ########.fr       */
+/*   Updated: 2022/08/12 14:16:14 by abiju-du         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	encode_rgb(unsigned int red, unsigned int green, unsigned int blue)
+static int	to_rgb(unsigned int red, unsigned int green, unsigned int blue)
 {
 	return (red << 16 | green << 8 | blue);
 }
@@ -20,11 +20,11 @@ static int	encode_rgb(unsigned int red, unsigned int green, unsigned int blue)
 static int	check_color(t_config *c, unsigned int r,
 	unsigned int g, unsigned int b)
 {
-	if (r > 255 || r < 0)
+	if (r > 255)
 		return (error_handling(c, 1, "Wrong color format"));
-	if (g > 255 || g < 0)
+	if (g > 255)
 		return (error_handling(c, 1, "Wrong color format"));
-	if (b > 255 || b < 0)
+	if (b > 255)
 		return (error_handling(c, 1, "Wrong color format"));
 	return (0);
 }
@@ -33,7 +33,6 @@ static int	save_color(t_config *conf, t_colors *color, char *line)
 {
 	int	i;
 	int	value;
-	int	coma;
 
 	i = 1;
 	while (line[i])
@@ -58,7 +57,7 @@ static int	save_color(t_config *conf, t_colors *color, char *line)
 	return (check_color(conf, color->r, color->g, color->b));
 }
 
-int	parse_colors(t_config *conf, char *line)
+int	parse_colors(t_config *c, char *line)
 {
 	int	i;
 
@@ -67,17 +66,17 @@ int	parse_colors(t_config *conf, char *line)
 		i++;
 	if (ft_strncmp("F", &line[i], 1) == 0)
 	{
-		if (save_color(conf, &conf->floor, &line[i]))
+		if (save_color(c, &c->floor, &line[i]))
 			return (1);
-		else
-			conf->floor.seen = 1;
+		c->floor.seen = 1;
+		c->floor.hex = to_rgb(c->floor.r, c->floor.g, c->floor.b);
 	}
 	if (ft_strncmp("C", &line[i], 1) == 0)
 	{
-		if (save_color(conf, &conf->ceiling, &line[i]))
+		if (save_color(c, &c->ceiling, &line[i]))
 			return (1);
-		else
-			conf->ceiling.seen = 1;
+		c->ceiling.seen = 1;
+		c->ceiling.hex = to_rgb(c->ceiling.r, c->ceiling.g, c->ceiling.b);
 	}
 	return (0);
 }

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_struct.h                                       :+:      :+:    :+:   */
+/*   game_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:53:03 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/15 15:25:00 by arnaud           ###   ########.fr       */
+/*   Updated: 2022/08/12 14:22:34 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_STRUCT_H
-# define CUB_STRUCT_H
+#ifndef GAME_STRUCT_H
+# define GAME_STRUCT_H
 
 # include "cub3d.h"
 
 typedef struct s_ray
 {
 	double	camera_x;
-	double	rayDir_x;
-	double	rayDir_y;
+	double	raydir_x;
+	double	raydir_y;
 	int		map_x;
 	int		map_y;
 	double	sidedist_x;
@@ -33,24 +33,26 @@ typedef struct s_ray
 	int		side;
 	int		top;
 	int		bottom;
-	int		color;
+	double	wall_x;
+	int		texture_x;
+	int		texture_y;
+	double	tex_pos;
+	double	tex_step;
+	int		line_height;
 }	t_ray;
 
 typedef struct s_player
 {
 	float	x;
 	float	y;
-	float	width;
-	float	height;
-	int		turn_dir;
-	int		walk_dir;
 	double	rotation_speed;
 	double	walk_speed;
-	float	turn_speed;
+	double	strafe_speed;
 	int		seen;
-	float	fov;
 	double	dir_x;
 	double	dir_y;
+	int		right;
+	int		left;
 	double	plane_x;
 	double	plane_y;
 	char	dir_init;
@@ -64,12 +66,6 @@ typedef struct s_map
 	char	**map;
 	int		map_begin;
 }	t_map;
-
-typedef struct s_textures
-{
-	int		saved;
-	char	*path;
-}	t_textures;
 
 typedef struct s_colors
 {
@@ -89,6 +85,15 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_textures
+{
+	int		saved;
+	char	*path;
+	t_img	img;
+	int		width;
+	int		height;
+}	t_textures;
+
 typedef struct s_graph
 {
 	void	*mlx;
@@ -98,7 +103,6 @@ typedef struct s_graph
 
 typedef struct s_config
 {
-	int			tile_size;
 	int			map_fd;
 	int			error;
 	t_colors	floor;

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 16:31:20 by tvogel            #+#    #+#             */
-/*   Updated: 2021/12/28 16:42:53 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/07/28 14:29:01 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	error_handling(t_config *conf, int return_value, char *message)
 {
 	conf->error = 1;
-	printf("Error: %s\n", message);
+	printf("\e[1mError: %s\e[m\n", message);
 	return (return_value);
 }

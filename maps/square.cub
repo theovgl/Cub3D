@@ -1,13 +1,14 @@
-NO ./path_to_the_north_texture
-SO        ./path_to_the_south_texture
-WE  ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./textures/bluestone.xpm
+SO        ./textures/colorstone.xpm
+WE  ./textures/greystone.xpm
+EA ./textures/mossy.xpm
 
 F 220,100,0
 C 225,30,0
 
-111111111
-100000N01
-101101001
-100000001
-111111111
+111
+10111111111
+1000000N001
+10111010001
+10000000001
+11111111111

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:26:18 by tvogel            #+#    #+#             */
-/*   Updated: 2022/08/12 10:48:46 by abiju-du         ###   ########.fr       */
+/*   Updated: 2022/08/12 13:59:47 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@ static void	init_mlx(t_graph *g)
 
 static void	player_init_dir(t_player *player)
 {
-	if (player->dir_init == 'E')
+	if (player->dir_init == 'N')
+	{
+		player->dir_y = -1;
+		player->plane_x = -0.66;
+		player->plane_y = 0;
+	}
+	else if (player->dir_init == 'S')
 	{
 		player->dir_y = 1;
 		player->plane_x = -0.66 * sin(4.71);
@@ -30,17 +36,11 @@ static void	player_init_dir(t_player *player)
 	}
 	else if (player->dir_init == 'W')
 	{
-		player->dir_y = -1;
-		player->plane_x = -0.66;
-		player->plane_y = 0;
-	}
-	else if (player->dir_init == 'N')
-	{
 		player->dir_x = -1;
 		player->plane_x = 0;
 		player->plane_y = 0.66;
 	}
-	else if (player->dir_init == 'S')
+	else if (player->dir_init == 'E')
 	{
 		player->dir_x = 1;
 		player->plane_x = -0.66 * sin(3.14);

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:35:45 by tvogel            #+#    #+#             */
-/*   Updated: 2022/07/28 14:37:10 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/12 13:48:59 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static int	choose_texture(t_ray *r)
 {
-	if (r->side == 0 && r->raydir_x < 0)
+	if (r->side == 1 && r->raydir_y < 0)
 		return (0);
-	else if (r->side == 0 && r->raydir_x > 0)
-		return (1);
-	else if (r->side == 1 && r->raydir_y < 0)
-		return (2);
 	else if (r->side == 1 && r->raydir_y > 0)
+		return (1);
+	else if (r->side == 0 && r->raydir_x < 0)
+		return (2);
+	else if (r->side == 0 && r->raydir_x > 0)
 		return (3);
 	return (0);
 }

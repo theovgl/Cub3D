@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 19:00:36 by tvogel            #+#    #+#             */
-/*   Updated: 2022/06/30 14:40:23 by arnaud           ###   ########.fr       */
+/*   Updated: 2022/08/12 14:16:14 by abiju-du         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	encode_rgb(unsigned int red, unsigned int green, unsigned int blue)
+static int	to_rgb(unsigned int red, unsigned int green, unsigned int blue)
 {
 	return (red << 16 | green << 8 | blue);
 }
@@ -57,7 +57,7 @@ static int	save_color(t_config *conf, t_colors *color, char *line)
 	return (check_color(conf, color->r, color->g, color->b));
 }
 
-int	parse_colors(t_config *conf, char *line)
+int	parse_colors(t_config *c, char *line)
 {
 	int	i;
 
@@ -66,25 +66,17 @@ int	parse_colors(t_config *conf, char *line)
 		i++;
 	if (ft_strncmp("F", &line[i], 1) == 0)
 	{
-		if (save_color(conf, &conf->floor, &line[i]))
+		if (save_color(c, &c->floor, &line[i]))
 			return (1);
-		else
-		{
-			conf->floor.seen = 1;
-			conf->floor.hex = encode_rgb(conf->floor.r,
-					conf->floor.g, conf->floor.b);
-		}
+		c->floor.seen = 1;
+		c->floor.hex = to_rgb(c->floor.r, c->floor.g, c->floor.b);
 	}
 	if (ft_strncmp("C", &line[i], 1) == 0)
 	{
-		if (save_color(conf, &conf->ceiling, &line[i]))
+		if (save_color(c, &c->ceiling, &line[i]))
 			return (1);
-		else
-		{
-			conf->ceiling.seen = 1;
-			conf->ceiling.hex = encode_rgb(conf->ceiling.r,
-					conf->ceiling.g, conf->ceiling.b);
-		}
+		c->ceiling.seen = 1;
+		c->ceiling.hex = to_rgb(c->ceiling.r, c->ceiling.g, c->ceiling.b);
 	}
 	return (0);
 }

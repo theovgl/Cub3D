@@ -6,7 +6,7 @@
 /*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:26:18 by tvogel            #+#    #+#             */
-/*   Updated: 2022/08/12 10:48:46 by abiju-du         ###   ########.fr       */
+/*   Updated: 2022/08/12 14:16:33 by abiju-du         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,5 @@ int	start(t_config *conf, t_graph *g)
 	mlx_hook(g->win, KeyPress, KeyPressMask, &keydown, conf);
 	mlx_hook(g->win, KeyRelease, KeyReleaseMask, &keyup, conf);
 	mlx_loop(g->mlx);
-	// mlx_destroy_window(g->mlx, g->win);
-	// mlx_destroy_display(g->mlx);
 	return (0);
 }

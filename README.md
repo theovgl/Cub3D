@@ -3,7 +3,7 @@
 
 > Proudly made by [Arnaud Biju Duval](https://github.com/ArnaudBD) (abiju-du) and [Théo Vogel](https://github.com/theovgl) (tvogel) !
 
-This project is about reimplementing the raycasting algorithm from the game wolfenstein.
+This project consists in re-implementing the raycasting algorithm from the wolfenstein game.
 
 ## Screenshots
 

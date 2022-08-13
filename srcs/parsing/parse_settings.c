@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_settings.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiju-du <abiju-du@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:50:43 by tvogel            #+#    #+#             */
-/*   Updated: 2022/08/12 18:57:03 by abiju-du         ###   ########.fr       */
+/*   Updated: 2022/08/13 10:02:39 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	save_texture(t_config *conf, char *line, t_textures *texture)
 	int	size;
 
 	i = 2;
+	if (texture->saved)
+		return (error_handling(conf, 1, "Texture path specified twice"));
 	while (line[i] != '.' && line[i])
 	{
 		if (!ft_isspace(line[i]) && line[i] != '.')

@@ -6,7 +6,7 @@
 /*   By: tvogel <tvogel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 10:25:41 by tvogel            #+#    #+#             */
-/*   Updated: 2022/08/12 17:58:18 by tvogel           ###   ########.fr       */
+/*   Updated: 2022/08/13 09:52:33 by tvogel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,18 @@ static int	check_player(t_config *c, char *line, int y)
 		if (line[i] == 'N' || line[i] == 'S'
 			|| line[i] == 'E' || line[i] == 'W')
 		{
+			if (c->player.seen >= 1)
+				return (error_handling(c, 1, "More than one player position"));
 			c->player.dir_init = line[i];
 			c->player.x = i;
 			c->player.y = y;
 			c->player.seen++;
 			c->map.map[y][i] = '0';
-			return (0);
 		}
 		i++;
 	}
 	if (y == c->map.map_height - 1 && c->player.seen == 0)
 		return (error_handling(c, 1, "Missing player position"));
-	if (y == c->map.map_height && c->player.seen > 1)
-		return (error_handling(c, 1, "More than one player position"));
 	return (0);
 }
 
